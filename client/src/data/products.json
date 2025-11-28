@@ -73,7 +73,10 @@
         "image": "https://www.rollingstone.com/wp-content/uploads/2025/03/sony-headphones-amazon-deal.png?w=900&h=600&crop=1",
         "rating": 4.6,
         "reviews": 3800,
-        "specs": { "type": "Over Ear", "noise_cancellation": "Yes" }
+        "specs": {
+          "type": "Over Ear",
+          "noise_cancellation": "Yes"
+        }
       },
       {
         "id": 6,
@@ -83,7 +86,10 @@
         "image": "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/airpods-pro-3-hero-select-202509?wid=976&hei=916&fmt=jpeg&qlt=90&.v=cmp4MmZ6OWxOeHNNTXh4SzlBNUpEb1RucE9zZTI5eEREaWZpY29lSld3eWVDYXovZDMyN1dXU211bjZoVlVUcWJGcXNRQnFCV0w3WVRjTExvdm1ic1YxRUxFRmRlWDBITzhnRmZ5OTRmaVdKTExiOEFsRmxtQ2Nua0tRSC83MkI",
         "rating": 4.5,
         "reviews": 5200,
-        "specs": { "type": "In Ear", "noise_cancellation": "Yes" }
+        "specs": {
+          "type": "In Ear",
+          "noise_cancellation": "Yes"
+        }
       }
     ],
     "Accessories": [
@@ -95,7 +101,10 @@
         "image": "https://images.samsung.com/is/image/samsung/p6pim/africa_en/feature/109443132/africa_en-feature-super-fast-charging-to-stay-live-376082323?$FB_TYPE_A_MO_JPG$",
         "rating": 4.3,
         "reviews": 1200,
-        "specs": { "type": "Adapter", "power": "25W" }
+        "specs": {
+          "type": "Adapter",
+          "power": "25W"
+        }
       },
       {
         "id": 8,
@@ -105,11 +114,13 @@
         "image": "https://m.media-amazon.com/images/I/51t3tjvTlVL._SX679_.jpg",
         "rating": 4.4,
         "reviews": 2100,
-        "specs": { "battery": "20000mAh", "output": "Fast Charge" }
+        "specs": {
+          "battery": "20000mAh",
+          "output": "Fast Charge"
+        }
       }
     ]
   },
-
   "grocery": {
     "Grains": [
       {
@@ -120,7 +131,9 @@
         "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMeBgluFgbWvYVv6M61A3_Yxv9TKftCKIvQw&s",
         "rating": 4.4,
         "reviews": 2300,
-        "specs": { "weight": "10kg" }
+        "specs": {
+          "weight": "10kg"
+        }
       },
       {
         "id": 102,
@@ -130,7 +143,9 @@
         "image": "https://www.tatanutrikorner.com/cdn/shop/files/Popular--Pack-1kg-FOP_5252b3a5-28cd-41c4-8f41-7ec2ac6ea385.png?v=1748858413&width=1920",
         "rating": 4.3,
         "reviews": 1500,
-        "specs": { "weight": "5kg" }
+        "specs": {
+          "weight": "5kg"
+        }
       }
     ],
     "Oils": [
@@ -194,7 +209,6 @@
       }
     ]
   },
-
   "appliances": {
     "Washing Machines": [
       {
@@ -277,7 +291,6 @@
       }
     ]
   },
-
   "fashion_beauty": {
     "Men": [
       {
@@ -360,7 +373,6 @@
       }
     ]
   },
-
   "home_utilities": {
     "Cleaning": [
       {
@@ -443,7 +455,6 @@
       }
     ]
   },
-
   "filters": {
     "electronics": [
       {
@@ -556,6 +567,39 @@
         "label": "Customer Ratings",
         "type": "rating",
         "values": ["4", "3"]
+      }
+    ],
+    "categoryImages": [
+      {
+        "electronics": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0Q0E1ATVDh9qUMfks5GaxRvHBjBQh8xl11Q&s",
+        "grocery": "https://cdn.prod.website-files.com/637f7c161a14232e2ea8473d/68273472635fcbdfa369f2e3_Untitled%20design%20(5)-compressed.jpg",
+        "appliances": "https://5.imimg.com/data5/GL/AB/GLADMIN-37892088/home-appliances.jpg",
+        "fashion_beauty": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSv_TJIWe-lzlefo3sFlaxcQFYwnho99Jff4Q&s",
+        "home_utilities": "https://img.freepik.com/free-vector/smart-home-flat-style_24908-55815.jpg?semt=ais_hybrid&w=740&q=80"
+      }
+    ],
+    "subcategoryImages": [
+      {
+        "Mobiles": "https://5.imimg.com/data5/SELLER/Default/2021/9/HR/PW/SE/32162519/vivo-mobile-phone.png",
+        "Laptops": "https://i.rtings.com/assets/pages/6S2WXjTl/best-laptops-20240516-medium.jpg?format=auto",
+        "Audio": "https://m.media-amazon.com/images/I/710rTCUgS4L.AC_UF1000,1000_QL80.jpg",
+        "Accessories": "https://promova.com/content/accessory_79573b939f.png",
+        "Grains": "https://img.freepik.com/free-psd/collection-various-grains-seeds-wooden-bowls_191095-86142.jpg?semt=ais_hybrid&w=740&q=80",
+        "Oils": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRK4IifUqbEy4cOxFQDils8hHFhbzfxT0E3GQ&s",
+        "Snacks": "https://media.istockphoto.com/id/1263686908/photo/mixed-salty-snack-flat-lay-table-scene-on-a-wood-background.jpg?s=612x612&w=0&k=20&c=rCZ-gpvz--NpeNA0cYGCyJj3EK0kFUSkvdsow9u4I3o=",
+        "Beverages": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGtkoq9V7ETfgOoA7ocitS9apGg1a0ukHlSg&s",
+        "Washing Machines": "https://yourcdn.com/images/washing-machines.jpg",
+        "Refrigerators": "https://yourcdn.com/images/refrigerators.jpg",
+        "Microwaves": "https://yourcdn.com/images/microwaves.jpg",
+        "Air Conditioners": "https://yourcdn.com/images/air-conditioners.jpg",
+        "Men": "https://yourcdn.com/images/mens-fashion.jpg",
+        "Women": "https://yourcdn.com/images/womens-fashion.jpg",
+        "Beauty": "https://yourcdn.com/images/beauty.jpg",
+        "Footwear": "https://yourcdn.com/images/footwear.jpg",
+        "Cleaning": "https://yourcdn.com/images/cleaning.jpg",
+        "Kitchen": "https://yourcdn.com/images/kitchen.jpg",
+        "Storage": "https://yourcdn.com/images/storage.jpg",
+        "Decor": "https://yourcdn.com/images/decor.jpg"
       }
     ]
   }

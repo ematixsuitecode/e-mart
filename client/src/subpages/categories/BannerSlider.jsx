@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 
 /**
  * BannerSlider - can be dynamic by category prop
- * If you'd like category-specific banners, pass a `category` prop and provide banners in a data file.
+ * If you'd like category-specific banners, pass a category prop and provide banners in a data file.
  */
 const defaultBanners = [
   "https://images.unsplash.com/photo-1550009158-9ebf69173e03?auto=format&fit=crop&w=1600&q=80",
@@ -76,3 +76,60 @@ const BannerSlider = ({
 };
 
 export default BannerSlider;
+
+// src/subpages/BannerSlider.jsx
+// import React, { useEffect, useState } from "react";
+
+// const BannerSlider = ({ banners = [], category }) => {
+//   // If only 1 banner passed → keep it as single slide
+//   const sliderImages = Array.isArray(banners) ? banners : [banners];
+
+//   const [currentIndex, setCurrentIndex] = useState(0);
+
+//   // Auto-slide every 3 seconds
+//   useEffect(() => {
+//     if (sliderImages.length <= 1) return; // No auto-slide for single image
+
+//     const interval = setInterval(() => {
+//       setCurrentIndex((prev) =>
+//         prev + 1 >= sliderImages.length ? 0 : prev + 1
+//       );
+//     }, 3000);
+
+//     return () => clearInterval(interval);
+//   }, [sliderImages]);
+
+//   if (sliderImages.length === 0) return null;
+
+//   return (
+//     <div className="w-full relative mb-4">
+//       {/* Banner Image */}
+//       <div className="w-full h-[180px] sm:h-[260px] md:h-[350px] lg:h-[420px] overflow-hidden rounded-md">
+//         <img
+//           src={sliderImages[currentIndex]}
+//           alt={category}
+//           className="w-full h-full object-cover transition-all duration-500"
+//         />
+//       </div>
+
+//       {/* Slider Dots */}
+//       {sliderImages.length > 1 && (
+//         <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 flex gap-2">
+//           {sliderImages.map((_, index) => (
+//             <button
+//               key={index}
+//               onClick={() => setCurrentIndex(index)}
+//               className={`w-2.5 h-2.5 rounded-full transition-all ${
+//                 currentIndex === index
+//                   ? "bg-white scale-110"
+//                   : "bg-white/50"
+//               }`}
+//             ></button>
+//           ))}
+//         </div>
+//       )}
+//     </div>
+//   );
+// };
+
+// export default BannerSlider;

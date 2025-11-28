@@ -14,9 +14,26 @@ const ProductDetails = () => {
     .filter((c) => c !== "filters")
     .flatMap((c) => allProducts[c]);
 
+  const getAllProducts = () => {
+    const products = [];
+
+    allItems.forEach((group) => {
+      Object.values(group).forEach((categoryArray) => {
+        categoryArray.forEach((product) => {
+          products.push(product);
+        });
+      });
+    });
+
+    return products;
+  };
   useEffect(() => {
-    const found = allItems.find((p) => String(p.id) === id);
+    const products = getAllProducts();
+    const found = products.find((p) => String(p.id) === String(id));
+
     setProduct(found);
+    console.log(found ? found : "Details not found");
+
     if (found) setMainImage(found.image);
   }, [id]);
 
