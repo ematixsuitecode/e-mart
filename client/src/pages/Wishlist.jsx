@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Heart, ShoppingCart, Trash2 } from "lucide-react";
 import iphone from "../assets/iphone.png";
 import samsung from "../assets/samsung.png";
-import sony from "../assets/sony.png"
+import sony from "../assets/sony.png";
 
 const Wishlist = () => {
   const [wishlist, setWishlist] = useState([
@@ -50,7 +50,6 @@ const Wishlist = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#edf4ff] to-[#f8fbff] p-6">
       <div className="max-w-6xl mx-auto">
-
         {/* Page Title */}
         <h1 className="text-4xl font-extrabold text-blue-900 mb-10 tracking-tight">
           My Wishlist ❤️
@@ -90,9 +89,7 @@ const Wishlist = () => {
 
               {/* RATING */}
               <div className="flex items-center gap-2 mt-2">
-                <div className="flex text-yellow-400 text-sm">
-                  ★★★★☆
-                </div>
+                <div className="flex text-yellow-400 text-sm">★★★★☆</div>
                 <span className="text-xs text-gray-600">
                   ({item.reviews} reviews)
                 </span>
