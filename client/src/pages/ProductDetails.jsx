@@ -1,4 +1,3 @@
-
 // src/pages/ProductDetails.jsx
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -7,7 +6,9 @@ import { Star, Truck, ShieldCheck, Heart, ShoppingCart } from "lucide-react";
 
 const ProductDetails = () => {
   const { id } = useParams();
+
   console.log(id, 'id value');
+
   const [product, setProduct] = useState(null);
   const [mainImage, setMainImage] = useState("");
 

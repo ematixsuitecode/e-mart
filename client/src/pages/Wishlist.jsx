@@ -3,7 +3,8 @@ import { Heart, ShoppingCart, Trash2 } from "lucide-react";
 import iphone from "../assets/iphone.png";
 import samsung from "../assets/samsung.png";
 import sony from "../assets/sony.png";
-import audio from '../assets/audio.png'
+
+import audio from "../assets/audio.png";
 
 const Wishlist = () => {
   const [wishlist, setWishlist] = useState([
@@ -38,15 +39,15 @@ const Wishlist = () => {
         "Industry-leading ANC • 30hr battery • Crystal-clear microphone quality",
     },
     {
-    id: 4,
-    name: "OnePlus Buds Pro 2",
-    image: audio,
-    price: 11999,
-    rating: 4.5,
-    reviews: "12,118",
-    description:
-      "Smart Adaptive Noise Cancellation • Dual Drivers • Spatial Audio • Up to 39hrs playback",
-  },
+      id: 4,
+      name: "OnePlus Buds Pro 2",
+      image: audio,
+      price: 11999,
+      rating: 4.5,
+      reviews: "12,118",
+      description:
+        "Smart Adaptive Noise Cancellation • Dual Drivers • Spatial Audio • Up to 39hrs playback",
+    },
   ]);
 
   const removeItem = (id) => {
@@ -61,7 +62,6 @@ const Wishlist = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#edf4ff] to-[#f8fbff] p-6 font-body">
       <div className="max-w-7xl mx-auto">
-
         {/* Page Title */}
         <h1 className="text-4xl font-bold text-center text-blue-900 mb-10 tracking-tight font-heading">
           My Wishlist
@@ -147,7 +147,6 @@ const Wishlist = () => {
             </div>
           ))}
         </div>
-
       </div>
     </div>
   );
