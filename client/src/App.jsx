@@ -20,6 +20,8 @@ import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import LoginPage from "./pages/LoginPage.jsx";
 import RegisterPage from "./pages/RegisterPage.jsx";
+import OrderPage from "./pages/OrderPage.jsx";
+import PaymentSuccess from "./pages/PaymentSuccess.jsx";
 
 // --- Utility Component: Scroll to Top on Route Change ---
 const ScrollToTop = () => {
@@ -55,6 +57,8 @@ export default function App() {
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
+            <Route path="/order" element={<OrderPage />} />
+            <Route path="/payment-success" element={<PaymentSuccess />} />
 
             {/* Category Subpages */}
             <Route path="/electronics" element={<Electronics />} />

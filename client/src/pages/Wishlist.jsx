@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { Heart, ShoppingCart, Trash2 } from "lucide-react";
 import iphone from "../assets/iphone.png";
 import samsung from "../assets/samsung.png";
-import sony from "../assets/sony.png"
+import sony from "../assets/sony.png";
+import audio from '../assets/audio.png'
 
 const Wishlist = () => {
   const [wishlist, setWishlist] = useState([
@@ -36,6 +37,16 @@ const Wishlist = () => {
       description:
         "Industry-leading ANC • 30hr battery • Crystal-clear microphone quality",
     },
+    {
+    id: 4,
+    name: "OnePlus Buds Pro 2",
+    image: audio,
+    price: 11999,
+    rating: 4.5,
+    reviews: "12,118",
+    description:
+      "Smart Adaptive Noise Cancellation • Dual Drivers • Spatial Audio • Up to 39hrs playback",
+  },
   ]);
 
   const removeItem = (id) => {
@@ -48,88 +59,95 @@ const Wishlist = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#edf4ff] to-[#f8fbff] p-6">
-      <div className="max-w-6xl mx-auto">
+    <div className="min-h-screen bg-gradient-to-br from-[#edf4ff] to-[#f8fbff] p-6 font-body">
+      <div className="max-w-7xl mx-auto">
 
         {/* Page Title */}
-        <h1 className="text-4xl font-extrabold text-blue-900 mb-10 tracking-tight">
-          My Wishlist ❤️
+        <h1 className="text-4xl font-bold text-center text-blue-900 mb-10 tracking-tight font-heading">
+          My Wishlist
         </h1>
 
-        {/* Wishlist Items Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Wishlist Grid - 4 Cards Per Row */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-7">
           {wishlist.map((item) => (
             <div
               key={item.id}
               className="
-                bg-white p-5 rounded-3xl shadow-md 
-                border border-blue-100 
-                hover:shadow-[0_12px_30px_rgba(0,100,255,0.12)]
+                bg-white p-4 rounded-2xl shadow-sm
+                border border-gray-300 
+                hover:shadow-[0_6px_20px_rgba(0,0,0,0.08)]
                 hover:-translate-y-1 transition-all duration-300
               "
             >
               {/* IMAGE */}
-              <div className="w-full h-48 mb-4 relative">
+              <div
+                className="
+                  w-full h-36 mb-3 flex items-center justify-center relative 
+                  border border-gray-300 rounded-xl 
+                "
+              >
                 <img
                   src={item.image}
                   alt=""
-                  className="w-full h-full object-cover rounded-2xl"
+                  className="object-contain h-full w-auto p-1"
                 />
-                <button className="absolute top-3 right-3 text-red-500">
-                  <Heart fill="red" />
+
+                <button className="absolute top-2 right-2 text-red-500">
+                  <Heart fill="red" size={18} />
                 </button>
               </div>
 
               {/* NAME */}
-              <h2 className="text-lg font-bold text-gray-900">{item.name}</h2>
+              <h2 className="text-base font-semibold text-gray-900 font-heading">
+                {item.name}
+              </h2>
 
               {/* DESCRIPTION */}
-              <p className="text-gray-600 text-sm mt-1 line-clamp-2">
+              <p className="text-gray-600 text-xs mt-1 leading-snug font-body">
                 {item.description}
               </p>
 
               {/* RATING */}
               <div className="flex items-center gap-2 mt-2">
-                <div className="flex text-yellow-400 text-sm">
-                  ★★★★☆
-                </div>
+                <div className="flex text-yellow-400 text-xs">★★★★☆</div>
                 <span className="text-xs text-gray-600">
                   ({item.reviews} reviews)
                 </span>
               </div>
 
               {/* PRICE */}
-              <p className="text-2xl font-bold text-blue-700 mt-3">
+              <p className="text-xl font-bold text-blue-700 mt-2 font-heading">
                 ₹{item.price.toLocaleString()}
               </p>
 
               {/* BUTTONS */}
-              <div className="flex items-center gap-3 mt-5">
+              <div className="flex items-center gap-25 mt-4">
                 <button
                   onClick={() => moveToCart(item.id)}
                   className="
-                    flex items-center gap-2 w-full py-2 rounded-xl
-                    bg-blue-600 text-white font-semibold text-sm
+                    flex items-center justify-center gap-2 w-32 py-2 rounded-md
+                    bg-blue-600 text-white font-semibold text-xs font-body
                     hover:bg-blue-700 transition
                   "
                 >
-                  <ShoppingCart size={16} />
+                  <ShoppingCart size={15} />
                   Move to Cart
                 </button>
 
                 <button
                   onClick={() => removeItem(item.id)}
                   className="
-                    p-2 rounded-xl bg-red-100 text-red-600
+                    p-2 rounded-md bg-red-100 text-red-600
                     hover:bg-red-200 transition
                   "
                 >
-                  <Trash2 size={20} />
+                  <Trash2 size={17} />
                 </button>
               </div>
             </div>
           ))}
         </div>
+
       </div>
     </div>
   );
