@@ -66,7 +66,7 @@ const Cart = () => {
             <div
               key={item.id}
               className="
-                group flex gap-5 p-5 rounded-2xl bg-white 
+                group flex gap-5 p-5 bg-white 
                 shadow-[0_6px_18px_rgba(0,0,0,0.07)]
                 border border-blue-100/50
                 hover:shadow-[0_12px_30px_rgba(0,115,255,0.18)]
@@ -77,7 +77,7 @@ const Cart = () => {
               <div className="w-28 h-28 flex-shrink-0 relative">
                 <img
                   src={item.image}
-                  className="w-full h-full object-cover rounded-xl shadow-md"
+                  className="w-full h-full object-cover shadow-md"
                   alt=""
                 />
               </div>
@@ -108,7 +108,7 @@ const Cart = () => {
                     ₹{item.price.toLocaleString()}
                   </p>
 
-                  <div className="flex items-center gap-4 px-4 py-1.5 bg-gray-100 rounded-full border border-gray-300">
+                  <div className="flex items-center gap-4 px-4 py-1.5 bg-gray-100 border border-gray-300">
                     <button
                       onClick={() => updateQty(item.id, item.qty - 1)}
                       className="text-blue-700 text-lg font-bold"
@@ -142,7 +142,7 @@ const Cart = () => {
         </div>
 
         {/* BILL SUMMARY */}
-        <div className="bg-white p-8 rounded-3xl border border-blue-100 shadow-[0_6px_20px_rgba(0,0,0,0.10)]">
+        <div className="bg-white p-8 border border-blue-100 shadow-[0_6px_20px_rgba(0,0,0,0.10)]">
           <h3 className="text-2xl font-bold font-heading text-blue-900 mb-7">
             Bill Summary
           </h3>
@@ -174,7 +174,7 @@ const Cart = () => {
 
           <button onClick={() => navigate('/order',{ state: { cartItems } })}
             className="
-            w-full mt-8 py-4 text-xl font-semibold text-white rounded-xl
+            w-full mt-8 py-4 text-xl font-semibold text-white
             bg-gradient-to-r from-blue-700 to-blue-500
             hover:from-blue-600 hover:to-blue-400 transition-all duration-300
             font-body

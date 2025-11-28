@@ -12,7 +12,7 @@ const AddressSection = () => {
   });
 
   return (
-    <div className="bg-white rounded-xl p-6 border border-gray-300 shadow-sm">
+    <div className="bg-white p-6 border border-gray-300 shadow-sm">
       <h2 className="text-xl font-heading font-bold mb-5 text-gray-800">
         1. Delivery Address
       </h2>
@@ -21,7 +21,7 @@ const AddressSection = () => {
       <div className="space-y-4">
         {/* Address 1 */}
         <div
-          className={`relative p-5 rounded-xl border cursor-pointer transition-all 
+          className={`relative p-5 border cursor-pointer transition-all 
            ${selected === 1 ? "border-blue-600 bg-blue-50" : "border-gray-300 hover:border-blue-300"}
           `}
           onClick={() => setSelected(1)}
@@ -39,7 +39,7 @@ const AddressSection = () => {
 
         {/* Address 2 */}
         <div
-          className={`relative p-5 rounded-xl border cursor-pointer transition-all 
+          className={`relative p-5 border cursor-pointer transition-all 
           ${selected === 2 ? "border-blue-600 bg-blue-50" : "border-gray-300 hover:border-blue-300"}
           `}
           onClick={() => setSelected(2)}
@@ -60,14 +60,14 @@ const AddressSection = () => {
       <button
         onClick={() => setShowForm(!showForm)}
         className="mt-5 w-full flex items-center justify-center gap-2 p-3 border border-blue-600 
-        text-blue-700 rounded-xl font-semibold hover:bg-blue-50 transition"
+        text-blue-700 font-semibold hover:bg-blue-50 transition"
       >
         <Plus size={18} /> Add New Address
       </button>
 
       {/* ADD NEW ADDRESS FORM */}
       {showForm && (
-        <div className="mt-5 p-4 border border-gray-300 rounded-xl bg-gray-50 animate-fadeIn">
+        <div className="mt-5 p-4 border border-gray-300 bg-gray-50 animate-fadeIn">
           <h3 className="font-heading text-gray-900 font-semibold mb-3">
             Add a New Address
           </h3>
@@ -76,7 +76,7 @@ const AddressSection = () => {
             <input
               type="text"
               placeholder="Full Name"
-              className="w-full p-2 border border-gray-300 rounded-lg text-sm"
+              className="w-full p-2 border border-gray-300 text-sm"
               value={newAddress.name}
               onChange={(e) =>
                 setNewAddress({ ...newAddress, name: e.target.value })
@@ -86,7 +86,7 @@ const AddressSection = () => {
             <textarea
               placeholder="Address"
               rows={3}
-              className="w-full p-2 border border-gray-300 rounded-lg text-sm"
+              className="w-full p-2 border border-gray-300 text-sm"
               value={newAddress.address}
               onChange={(e) =>
                 setNewAddress({ ...newAddress, address: e.target.value })
@@ -96,7 +96,7 @@ const AddressSection = () => {
             <input
               type="text"
               placeholder="Phone Number"
-              className="w-full p-2 border border-gray-300 rounded-lg text-sm"
+              className="w-full p-2 border border-gray-300 text-sm"
               value={newAddress.phone}
               onChange={(e) =>
                 setNewAddress({ ...newAddress, phone: e.target.value })
@@ -108,7 +108,7 @@ const AddressSection = () => {
                 alert("Address saved! (You can integrate backend next)");
                 setShowForm(false);
               }}
-              className="w-full p-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700"
+              className="w-full p-3 bg-blue-600 text-white font-semibold hover:bg-blue-700"
             >
               Save Address
             </button>

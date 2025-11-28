@@ -73,7 +73,7 @@ const Wishlist = () => {
             <div
               key={item.id}
               className="
-                bg-white p-4 rounded-2xl shadow-sm
+                bg-white p-4 shadow-sm
                 border border-gray-300 
                 hover:shadow-[0_6px_20px_rgba(0,0,0,0.08)]
                 hover:-translate-y-1 transition-all duration-300
@@ -83,7 +83,7 @@ const Wishlist = () => {
               <div
                 className="
                   w-full h-36 mb-3 flex items-center justify-center relative 
-                  border border-gray-300 rounded-xl 
+                  border border-gray-300 
                 "
               >
                 <img
@@ -125,7 +125,7 @@ const Wishlist = () => {
                 <button
                   onClick={() => moveToCart(item.id)}
                   className="
-                    flex items-center justify-center gap-2 w-32 py-2 rounded-md
+                    flex items-center justify-center gap-2 w-32 py-2
                     bg-blue-600 text-white font-semibold text-xs font-body
                     hover:bg-blue-700 transition
                   "
@@ -137,7 +137,7 @@ const Wishlist = () => {
                 <button
                   onClick={() => removeItem(item.id)}
                   className="
-                    p-2 rounded-md bg-red-100 text-red-600
+                    p-2 bg-red-100 text-red-600
                     hover:bg-red-200 transition
                   "
                 >

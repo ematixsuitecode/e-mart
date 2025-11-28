@@ -9,7 +9,7 @@ const OrderSummary = ({ cartItems }) => {
   const total = subtotal - discount + delivery;
 
   return (
-    <div className="bg-white rounded-xl p-5 border border-gray-300 h-fit">
+    <div className="bg-white p-5 border border-gray-300 h-fit">
       
       <h2 className="text-xl font-heading font-bold mb-4 text-gray-800">
         Order Summary
@@ -24,7 +24,7 @@ const OrderSummary = ({ cartItems }) => {
           >
             <img
               src={item.image}
-              className="w-16 h-16 rounded-lg object-cover flex-shrink-0"
+              className="w-16 h-16 object-cover flex-shrink-0"
             />
 
             <div className="flex-1">

@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import gpay from '../../assets/gpay.png'
+import bharat from '../../assets/bharat.png'
+import paytm from '../../assets/Paytm_Logo.png'
+import phone from '../../assets/phonepe.png'
 
 // CARD BRAND DETECTION
 const detectCardBrand = (number) => {
@@ -95,10 +99,10 @@ const PaymentSection = ({ cartItems }) => {
 
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               {[
-                { id: "gpay", logo: "https://seeklogo.com/images/G/google-pay-logo-2A9E8DCE43-seeklogo.com.png", name: "GPay" },
-                { id: "phonepe", logo: "https://seeklogo.com/images/P/phonepe-logo-CA3C7AA154-seeklogo.com.png", name: "PhonePe" },
-                { id: "paytm", logo: "https://upload.wikimedia.org/wikipedia/commons/5/55/Paytm_logo.png", name: "Paytm" },
-                { id: "bhim", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/BHIM_logo.svg/2560px-BHIM_logo.svg.png", name: "BHIM UPI" },
+                { id: "gpay", logo: gpay, name: "GPay" },
+                { id: "phonepe", logo: phone, name: "PhonePe" },
+                { id: "paytm", logo: paytm, name: "Paytm" },
+                { id: "bhim", logo: bharat, name: "BHIM UPI" },
               ].map((app) => (
                 <div
                   key={app.id}
@@ -215,7 +219,7 @@ const PaymentSection = ({ cartItems }) => {
             <input
               type="text"
               placeholder="Name on Card"
-              className="w-full p-3 border border-gray-300 rounded-lg"
+              className="w-full p-3 border border-gray-300"
               value={cardName}
               onChange={(e) => setCardName(e.target.value)}
             />
@@ -226,7 +230,7 @@ const PaymentSection = ({ cartItems }) => {
                 type="text"
                 maxLength={5}
                 placeholder="MM/YY"
-                className="w-1/2 p-3 border border-gray-300 rounded-lg"
+                className="w-1/2 p-3 border border-gray-300"
                 value={expiry}
                 onChange={(e) => setExpiry(formatExpiry(e.target.value))}
               />
@@ -235,7 +239,7 @@ const PaymentSection = ({ cartItems }) => {
                 type="password"
                 maxLength={3}
                 placeholder="CVV"
-                className="w-1/2 p-3 border border-gray-300 rounded-lg"
+                className="w-1/2 p-3 border border-gray-300 "
                 value={cvv}
                 onChange={(e) => setCvv(e.target.value.replace(/\D/g, ""))}
               />
@@ -244,7 +248,7 @@ const PaymentSection = ({ cartItems }) => {
             {/* Pay Button */}
             <button
               onClick={handlePayment}
-              className="w-full py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition"
+              className="w-full py-3 bg-blue-600 text-white font-semibold hover:bg-blue-700 transition"
             >
               Pay ₹{subtotal.toLocaleString()}
             </button>
@@ -253,7 +257,7 @@ const PaymentSection = ({ cartItems }) => {
 
         {/* ======================== COD ======================== */}
         <label
-          className={`p-4 border rounded-xl cursor-pointer flex gap-3 
+          className={`p-4 border cursor-pointer flex gap-3 
           ${method === "cod" ? "border-blue-600 bg-blue-50" : "border-gray-300"}`}
         >
           <input
@@ -268,7 +272,7 @@ const PaymentSection = ({ cartItems }) => {
         {method === "cod" && (
           <button
             onClick={handlePayment}
-            className="w-full mt-3 py-3 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-700 transition"
+            className="w-full mt-3 py-3 bg-blue-600 text-white font-semibold hover:bg-blue-700 transition"
           >
             Confirm COD Order →
           </button>
