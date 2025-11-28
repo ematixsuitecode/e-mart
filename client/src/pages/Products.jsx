@@ -97,17 +97,14 @@ const Products = () => {
   /* ---------------------------------------
    * 5. INSERT AD BANNERS AFTER EVERY 8 PRODUCTS
    --------------------------------------- */
-  const adKeywords = [
-    "shopping",
-    "electronics",
-    "mobile",
-    "fashion",
-    "beauty",
-    "furniture",
-    "appliances",
-    "discount",
-    "sale",
-    "offer",
+  const adBanners = [
+    "https://cdn.pixabay.com/photo/2019/04/10/15/06/sale-4114885_1280.jpg",
+    "https://cdn.pixabay.com/photo/2016/11/29/03/52/sale-1860031_1280.jpg",
+    "https://cdn.pixabay.com/photo/2017/07/31/11/20/smartphone-2568618_1280.jpg",
+    "https://cdn.pixabay.com/photo/2016/11/29/04/17/online-1863425_1280.jpg",
+    "https://cdn.pixabay.com/photo/2017/11/27/23/54/living-room-2989693_1280.jpg",
+    "https://cdn.pixabay.com/photo/2017/08/12/16/06/kitchen-2631942_1280.jpg",
+    "https://cdn.pixabay.com/photo/2017/01/12/14/23/vegetables-1978521_1280.jpg",
   ];
 
   const productWithAds = useMemo(() => {
@@ -116,15 +113,15 @@ const Products = () => {
       result.push(p);
 
       if ((index + 1) % 8 === 0) {
-        const keyword = adKeywords[index % adKeywords.length];
-
+        const banner = adBanners[index % adBanners.length];
         result.push({
           isAd: true,
           id: `ad-${index}`,
-          image: `https://picsum.photos/seed/${keyword}${index}/1200/300`,
+          image: banner,
         });
       }
     });
+
     return result;
   }, [filteredProducts]);
 
