@@ -13,6 +13,7 @@ import Footer from "./components/layout/Footer";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import Productpage from "./subpages/categories/electronics";
+import TodaysSpecial from "./subpages/TodaysSpecial";
 
 // NEW dynamic product page
 
@@ -41,6 +42,7 @@ export default function App() {
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
+            <Route path="/todays-special" element={<TodaysSpecial />} />
 
             {/* DYNAMIC CATEGORY ROUTE */}
             <Route path="/category/:categoryId" element={<Productpage />} />

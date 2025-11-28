@@ -6,7 +6,7 @@
         "name": "Samsung Galaxy S23 Ultra",
         "brand": "Samsung",
         "price": 999,
-        "image": "https://source.unsplash.com/featured/?smartphone",
+        "image": "https://m.media-amazon.com/images/I/71goZuIha-L.jpg",
         "rating": 4.7,
         "reviews": 2873,
         "specs": {
@@ -21,7 +21,7 @@
         "name": "Apple iPhone 14 Pro Max",
         "brand": "Apple",
         "price": 1099,
-        "image": "https://source.unsplash.com/featured/?iphone",
+        "image": "https://easyphones.co.in/cdn/shop/files/Apple_iPhone_14_pro_Max_-_Refurbished_White.png?v=1755513244",
         "rating": 4.6,
         "reviews": 5421,
         "specs": {
@@ -38,7 +38,7 @@
         "name": "MacBook Air M2",
         "brand": "Apple",
         "price": 1299,
-        "image": "https://source.unsplash.com/featured/?laptop",
+        "image": "https://cdn.mos.cms.futurecdn.net/v2/t:0,l:238,cw:1523,ch:857,q:80,w:1523/C6kmbgLbWibKNwWumPmmRe.jpg",
         "rating": 4.8,
         "reviews": 4100,
         "specs": {
@@ -53,7 +53,7 @@
         "name": "Dell XPS 13",
         "brand": "Dell",
         "price": 999,
-        "image": "https://source.unsplash.com/featured/?computer",
+        "image": "https://m.media-amazon.com/images/I/51rKK6Tn8-L.jpg",
         "rating": 4.5,
         "reviews": 2600,
         "specs": {
@@ -70,7 +70,7 @@
         "name": "Sony WH-1000XM5",
         "brand": "Sony",
         "price": 349,
-        "image": "https://source.unsplash.com/featured/?headphones",
+        "image": "https://www.rollingstone.com/wp-content/uploads/2025/03/sony-headphones-amazon-deal.png?w=900&h=600&crop=1",
         "rating": 4.6,
         "reviews": 3800,
         "specs": { "type": "Over Ear", "noise_cancellation": "Yes" }
@@ -80,7 +80,7 @@
         "name": "Apple AirPods Pro 2",
         "brand": "Apple",
         "price": 249,
-        "image": "https://source.unsplash.com/featured/?earbuds",
+        "image": "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/airpods-pro-3-hero-select-202509?wid=976&hei=916&fmt=jpeg&qlt=90&.v=cmp4MmZ6OWxOeHNNTXh4SzlBNUpEb1RucE9zZTI5eEREaWZpY29lSld3eWVDYXovZDMyN1dXU211bjZoVlVUcWJGcXNRQnFCV0w3WVRjTExvdm1ic1YxRUxFRmRlWDBITzhnRmZ5OTRmaVdKTExiOEFsRmxtQ2Nua0tRSC83MkI",
         "rating": 4.5,
         "reviews": 5200,
         "specs": { "type": "In Ear", "noise_cancellation": "Yes" }
@@ -92,7 +92,7 @@
         "name": "Samsung 25W Fast Charger",
         "brand": "Samsung",
         "price": 29,
-        "image": "https://source.unsplash.com/featured/?charger",
+        "image": "https://images.samsung.com/is/image/samsung/p6pim/africa_en/feature/109443132/africa_en-feature-super-fast-charging-to-stay-live-376082323?$FB_TYPE_A_MO_JPG$",
         "rating": 4.3,
         "reviews": 1200,
         "specs": { "type": "Adapter", "power": "25W" }
@@ -102,7 +102,7 @@
         "name": "Anker PowerBank 20,000mAh",
         "brand": "Anker",
         "price": 49,
-        "image": "https://source.unsplash.com/featured/?powerbank",
+        "image": "https://m.media-amazon.com/images/I/51t3tjvTlVL._SX679_.jpg",
         "rating": 4.4,
         "reviews": 2100,
         "specs": { "battery": "20000mAh", "output": "Fast Charge" }
@@ -117,7 +117,7 @@
         "name": "Aashirvaad Atta 10kg",
         "brand": "Aashirvaad",
         "price": 6,
-        "image": "https://source.unsplash.com/featured/?wheat",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMeBgluFgbWvYVv6M61A3_Yxv9TKftCKIvQw&s",
         "rating": 4.4,
         "reviews": 2300,
         "specs": { "weight": "10kg" }
@@ -127,7 +127,7 @@
         "name": "Tata Rice 5kg",
         "brand": "Tata",
         "price": 5,
-        "image": "https://source.unsplash.com/featured/?rice",
+        "image": "https://www.tatanutrikorner.com/cdn/shop/files/Popular--Pack-1kg-FOP_5252b3a5-28cd-41c4-8f41-7ec2ac6ea385.png?v=1748858413&width=1920",
         "rating": 4.3,
         "reviews": 1500,
         "specs": { "weight": "5kg" }
@@ -139,7 +139,7 @@
         "name": "Fortune Sunflower Oil 5L",
         "brand": "Fortune",
         "price": 8,
-        "image": "https://source.unsplash.com/featured/?cooking-oil",
+        "image": "https://m.media-amazon.com/images/I/81gBShBlfOL.SY741.jpg",
         "rating": 4.2,
         "reviews": 1800
       },
@@ -148,7 +148,7 @@
         "name": "Freedom Refined Oil 5L",
         "brand": "Freedom",
         "price": 7,
-        "image": "https://source.unsplash.com/featured/?sunflower-oil",
+        "image": "https://m.media-amazon.com/images/I/617RPdz74sL.AC_UF350,350_QL80.jpg",
         "rating": 4.1,
         "reviews": 1100
       }
@@ -159,7 +159,7 @@
         "name": "Lays Classic Salted",
         "brand": "Lays",
         "price": 2,
-        "image": "https://source.unsplash.com/featured/?chips",
+        "image": "https://rukminim2.flixcart.com/image/480/640/xif0q/chips/d/b/w/270-classic-salted-potato-3-lay-s-original-imagxz9fq9h58yzh.jpeg?q=90",
         "rating": 4.2,
         "reviews": 800
       },
@@ -168,7 +168,7 @@
         "name": "Kurkure Masala Munch",
         "brand": "Kurkure",
         "price": 1,
-        "image": "https://source.unsplash.com/featured/?snacks",
+        "image": "https://cdn.quicksell.co/-NgZTIJVW7YR__darKRi/products/-NsSdJYGKdI0kTlefqVM.jpg",
         "rating": 4.1,
         "reviews": 900
       }
@@ -179,7 +179,7 @@
         "name": "Coca-Cola 2L",
         "brand": "Coca-Cola",
         "price": 3,
-        "image": "https://source.unsplash.com/featured/?cola",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpwmCnC7qgNjAB9fJjTGhu1JgrJn6Ae9FiuA&s",
         "rating": 4.5,
         "reviews": 2000
       },
@@ -188,7 +188,7 @@
         "name": "Tropicana Orange Juice",
         "brand": "Tropicana",
         "price": 4,
-        "image": "https://source.unsplash.com/featured/?juice",
+        "image": "https://i.pinimg.com/736x/d8/3e/63/d83e631ca67cbbd7f90a394d061787b2.jpg",
         "rating": 4.4,
         "reviews": 1600
       }

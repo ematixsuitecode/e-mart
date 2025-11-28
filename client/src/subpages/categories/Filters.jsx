@@ -415,7 +415,7 @@ const Filters = ({
   if (!isMobile) {
     return (
       <div>
-        <div className="p-4 border rounded-md bg-white shadow-sm">
+        <div className="p-4 bg-white shadow-sm">
           <InnerFilters />
         </div>
       </div>

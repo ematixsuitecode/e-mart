@@ -104,7 +104,7 @@ const ProductCard = ({
     }`;
 
   return (
-    <div className="bg-white border border-gray-100 rounded-lg p-4 hover:shadow-lg transition-transform transform group">
+    <div className="bg-white border border-gray-400 p-4 hover:shadow-lg transition-transform transform group">
       <div className="relative aspect-square mb-3 rounded-md overflow-hidden bg-gray-100 flex items-center justify-center">
         <img
           src={image}

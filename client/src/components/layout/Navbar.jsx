@@ -72,7 +72,7 @@ const Navbar = () => {
           </span>
           <div className="flex items-center gap-1 text-gray-700 font-bold text-sm">
             <MapPin className="w-3.5 h-3.5 text-indigo-500" />
-            <span>Chennai, 600028</span>
+            <span>Salem, 636007</span>
             <ChevronDown className="w-3 h-3 text-gray-400" />
           </div>
         </div>

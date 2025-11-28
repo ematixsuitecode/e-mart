@@ -362,6 +362,7 @@ const Productpage = () => {
       {/* Subcategory round icons */}
       <div className="border-b border-gray-100">
         <div className="container mx-auto px-4">
+          Sub categories
           <div className="flex gap-4 py-4 overflow-x-auto hide-scrollbar">
             {subcategoryBubbles.length > 0 ? (
               subcategoryBubbles.map((s) => (
@@ -417,15 +418,15 @@ const Productpage = () => {
       <div className="container mx-auto px-4 pb-12 flex gap-6 relative">
         {/* Sidebar Desktop */}
         <aside className="w-64 flex-shrink-0 hidden lg:block sticky top-24 h-max">
-          <div className="bg-white p-4 rounded-md border border-gray-100 shadow-sm">
-            <div className="flex items-center justify-between mb-3">
-              <h4 className="font-bold text-sm">Filters</h4>
+          <div className="bg-white p-4  shadow-sm">
+            <div className="flex items-center justify-between mb-10">
+              {/* <h4 className="font-bold text-sm">Filters</h4>
               <button
                 onClick={clearFilters}
                 className="text-xs text-indigo-600 font-semibold"
               >
                 Reset
-              </button>
+              </button> */}
             </div>
             <Filters
               filters={filtersConfig}
