@@ -19,7 +19,6 @@ import TodaysSpecial from "./subpages/TodaysSpecial";
 
 // NEW dynamic product page
 
-
 const ScrollToTop = () => {
   const { pathname } = useLocation();
   useEffect(() => window.scrollTo(0, 0), [pathname]);
@@ -49,12 +48,6 @@ export default function App() {
             <Route path="/order" element={<OrderPage />} />
             <Route path="/payment-success" element={<PaymentSuccess />} />
 
-            {/* Category Subpages */}
-            {/* <Route path="/electronics" element={<Electronics />} /> */}
-            {/* <Route path="/fashion-trends" element={<FashionTrends />} />
-            <Route path="/homes-furniture" element={<HomesFurniture />} />
-            <Route path="/tvs-appliances" element={<TvsAppliances />} />
-            <Route path="/grocery" element={<Grocery />} /> */}
             <Route path="/todays-special" element={<TodaysSpecial />} />
 
             {/* DYNAMIC CATEGORY ROUTE */}
