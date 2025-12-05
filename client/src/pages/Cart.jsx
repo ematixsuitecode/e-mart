@@ -1,189 +1,272 @@
-import React, { useState } from "react";
-import { Trash2 } from "lucide-react";
-import samsungImg from "../assets/samsung.jpg";
-import realme from "../assets/realme.png";
-import headPhone from "../assets/HeadPhones.jpeg";
+import React, { useEffect, useState } from "react";
+import { Trash2, Plus, Minus, ArrowRight, ShieldCheck } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import CustomFetch from "../utils/CustomFetch";
+
+const formatPrice = (price) => {
+  return new Intl.NumberFormat("en-IN", {
+    style: "currency",
+    currency: "INR",
+  }).format(price);
+};
 
 const Cart = () => {
   const navigate = useNavigate();
-  const [cartItems, setCartItems] = useState([
-    {
-      id: 1,
-      name: "Samsung Galaxy A54",
-      specs: "8 GB RAM • Super AMOLED • 256 GB Storage",
-      price: 37716,
-      qty: 1,
-      image: samsungImg,
-    },
-    {
-      id: 2,
-      name: "Realme GT 2 Pro",
-      specs: "12 GB RAM • 2K AMOLED • Snapdragon 8 Gen 1",
-      price: 50316,
-      qty: 1,
-      image: realme,
-    },
-    {
-      id: 3,
-      name: "Sony WH-1000XM5",
-      specs: "Wireless • ANC • 30hr Battery",
-      price: 29232,
-      qty: 1,
-      image: headPhone,
-    },
-  ]);
+
+  const [cartItems, setCartItems] = useState([]);
+  const [subTotal, setSubTotal] = useState(0);
+  const [discount, setDiscount] = useState(0);
+  const [grandTotal, setGrandTotal] = useState(0);
+
+  const [selectedItems, setSelectedItems] = useState([]);
+
+  const fetchCartDetails = async () => {
+    try {
+      const response = await CustomFetch.get("/cart");
+      const cart = response.data;
+
+      setCartItems(cart.items);
+      setSubTotal(cart.subTotal);
+      setDiscount(cart.discount);
+      setGrandTotal(cart.grandTotal);
+    } catch (error) {
+      alert("Error fetching cart");
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchCartDetails();
+  }, []);
 
   const updateQty = (id, qty) => {
     if (qty < 1) return;
     setCartItems((prev) =>
-      prev.map((item) => (item.id === id ? { ...item, qty } : item))
+      prev.map((item) =>
+        item._id === id
+          ? { ...item, quantity: qty, totalPrice: qty * item.price }
+          : item
+      )
     );
   };
 
   const removeItem = (id) => {
-    setCartItems((prev) => prev.filter((item) => item.id !== id));
+    setCartItems((prev) => prev.filter((item) => item._id !== id));
+    setSelectedItems((prev) => prev.filter((itemId) => itemId !== id));
   };
 
-  const subtotal = cartItems.reduce((s, i) => s + i.price * i.qty, 0);
-  const discount = 500;
-  const shipping = 0;
-  const total = subtotal - discount + shipping;
+  const toggleSelectItem = (id) => {
+    setSelectedItems((prev) =>
+      prev.includes(id) ? prev.filter((itemId) => itemId !== id) : [...prev, id]
+    );
+  };
+
+  const handleCheckout = (checkoutItems) => {
+    navigate("/order", {
+      state: {
+        cartItems: checkoutItems,
+        singleProduct: checkoutItems.length === 1,
+        fromSelection: selectedItems.length > 0,
+      },
+    });
+  };
+
+  // EMPTY CART UI
+  if (cartItems.length === 0) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-4">
+        <img
+          src="https://cdni.iconscout.com/illustration/premium/thumb/empty-cart-2130356-1800917.png"
+          alt="Empty Cart"
+          className="w-64 h-64 object-contain mix-blend-multiply"
+        />
+        <h2 className="text-2xl font-bold text-gray-900 mb-2">
+          Your Cart is Empty
+        </h2>
+        <p className="text-gray-500 mb-6 text-center">
+          Looks like you haven't added anything to your cart yet.
+        </p>
+
+        <button
+          onClick={() => navigate("/")}
+          className="bg-indigo-600 text-white px-8 py-3 rounded-full font-bold shadow-lg hover:bg-indigo-700 transition"
+        >
+          Start Shopping
+        </button>
+      </div>
+    );
+  }
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-[#dcebff] via-[#f3f8ff] to-[#ffffff] py-12 px-4 md:px-10 font-body">
+    <div className="bg-gray-50 min-h-screen font-sans pb-20">
+      <div className="container mx-auto px-4 py-8">
 
-      {/* TITLE */}
-      <h1 className="text-4xl md:text-5xl font-bold font-heading text-center text-blue-900 tracking-tight mb-14">
-        Your Shopping Cart
-      </h1>
+        <h1 className="text-3xl font-bold text-gray-900 mb-8">
+          Shopping Cart ({cartItems.length})
+        </h1>
 
-      <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
-        {/* CART ITEMS */}
-        <div className="lg:col-span-2 space-y-7">
-          {cartItems.map((item) => (
-            <div
-              key={item.id}
-              className="
-                group flex gap-5 p-5 bg-white 
-                shadow-[0_6px_18px_rgba(0,0,0,0.07)]
-                border border-blue-100/50
-                hover:shadow-[0_12px_30px_rgba(0,115,255,0.18)]
-                transition-all duration-400 hover:-translate-y-1
-              "
-            >
-              {/* IMAGE */}
-              <div className="w-28 h-28 flex-shrink-0 relative">
-                <img
-                  src={item.image}
-                  className="w-full h-full object-cover shadow-md"
-                  alt=""
-                />
-              </div>
-
-              {/* DETAILS */}
-              <div className="flex-1">
-                <h2 className="text-lg font-semibold font-heading text-gray-900">
-                  {item.name}
-                </h2>
-
-                <p className="text-gray-600 text-sm">{item.specs}</p>
-
-                {/* RATING */}
-                <div className="flex items-center gap-2 mt-2">
-                  <div className="flex text-yellow-400 text-sm">★★★★☆</div>
-                  <span className="text-xs text-gray-600">(1,284 reviews)</span>
-                </div>
-
-                {/* DESCRIPTION */}
-                <p className="text-gray-600 text-sm mt-2">
-                  This model delivers excellent performance with premium
-                  features, long battery life, and boosted display quality.
-                </p>
-
-                {/* PRICE + QUANTITY */}
-                <div className="flex items-center justify-between mt-3">
-                  <p className="text-xl font-bold text-blue-700 font-heading">
-                    ₹{item.price.toLocaleString()}
-                  </p>
-
-                  <div className="flex items-center gap-4 px-4 py-1.5 bg-gray-100 border border-gray-300">
-                    <button
-                      onClick={() => updateQty(item.id, item.qty - 1)}
-                      className="text-blue-700 text-lg font-bold"
-                    >
-                      −
-                    </button>
-
-                    <span className="font-semibold text-gray-900">
-                      {item.qty}
-                    </span>
-
-                    <button
-                      onClick={() => updateQty(item.id, item.qty + 1)}
-                      className="text-blue-700 text-lg font-bold"
-                    >
-                      +
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              {/* DELETE BUTTON */}
-              <button
-                onClick={() => removeItem(item.id)}
-                className="text-red-500 hover:text-red-700 transition"
+          {/* CART ITEMS */}
+          <div className="lg:col-span-2 space-y-5">
+            {cartItems.map((item) => (
+              <div
+                key={item._id}
+                className="bg-white rounded-xl p-5 border border-gray-200 shadow-sm flex flex-col sm:flex-row gap-5"
               >
-                <Trash2 size={22} />
+                {/* SELECT CHECKBOX */}
+                <input
+                  type="checkbox"
+                  checked={selectedItems.includes(item._id)}
+                  onChange={() => toggleSelectItem(item._id)}
+                  className="w-5 h-5 accent-blue-600 cursor-pointer"
+                />
+
+                {/* IMAGE */}
+                <div className="w-full sm:w-32 h-32 bg-gray-100 rounded-lg flex items-center justify-center p-2">
+                  <img
+                    src={item.product.imageUrl[0].url}
+                    alt={item.product.name}
+                    className="w-full h-full object-contain mix-blend-multiply"
+                  />
+                </div>
+
+                {/* DETAILS */}
+                <div className="flex-1 flex flex-col justify-between">
+                  <div>
+                    <div className="flex justify-between items-start">
+                      <h3 className="font-bold text-gray-900 text-lg line-clamp-2">
+                        {item.product.name}
+                      </h3>
+
+                      <button
+                        onClick={() => removeItem(item._id)}
+                        className="text-gray-400 hover:text-red-500 transition"
+                      >
+                        <Trash2 className="w-5 h-5" />
+                      </button>
+                    </div>
+
+                    <p className="text-xs text-gray-500 mt-1 uppercase tracking-wide font-bold">
+                      {item.product.brand || "Brand"}
+                    </p>
+
+                    <div className="mt-2 text-sm text-green-600 font-medium">
+                      In Stock
+                    </div>
+                  </div>
+
+                  {/* QUANTITY + PRICE */}
+                  <div className="flex justify-between items-end mt-4">
+                    {/* QUANTITY BOX */}
+                    <div className="flex items-center border border-gray-300 rounded-lg">
+                      <button
+                        onClick={() => updateQty(item._id, item.quantity - 1)}
+                        className="p-2 hover:bg-gray-100 text-gray-600 transition"
+                      >
+                        <Minus className="w-4 h-4" />
+                      </button>
+
+                      <span className="w-8 text-center font-bold text-sm">
+                        {item.quantity}
+                      </span>
+
+                      <button
+                        onClick={() => updateQty(item._id, item.quantity + 1)}
+                        className="p-2 hover:bg-gray-100 text-gray-600 transition"
+                      >
+                        <Plus className="w-4 h-4" />
+                      </button>
+                    </div>
+
+                    {/* PRICE */}
+                    <div className="text-right">
+                      <span className="block text-xl font-bold text-gray-900">
+                        {formatPrice(item.price * item.quantity)}
+                      </span>
+
+                      {item.quantity > 1 && (
+                        <span className="text-xs text-gray-500">
+                          {formatPrice(item.price)} each
+                        </span>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* BUY NOW */}
+                  <button
+                    onClick={() =>
+                      handleCheckout([
+                        { ...item, quantity: 1, totalPrice: item.price },
+                      ])
+                    }
+                    className="mt-4 bg-blue-600 text-white py-2 rounded-lg font-semibold hover:bg-blue-700 transition flex justify-center gap-2"
+                  >
+                    Buy Now <ArrowRight className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* RIGHT SIDE: BILL SUMMARY */}
+          <div>
+            <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm sticky top-24">
+              <h2 className="text-lg font-bold text-gray-900 mb-4 border-b border-gray-100 pb-4">
+                Order Summary
+              </h2>
+
+              <div className="space-y-3 text-sm mb-6">
+                <div className="flex justify-between text-gray-600">
+                  <span>Subtotal</span>
+                  <span>{formatPrice(subTotal)}</span>
+                </div>
+
+                <div className="flex justify-between text-gray-600">
+                  <span>Shipping</span>
+                  <span className="text-green-600 font-bold">Free</span>
+                </div>
+
+                <div className="flex justify-between text-gray-600">
+                  <span>Discount</span>
+                  <span className="text-green-600">- {formatPrice(discount)}</span>
+                </div>
+
+                <div className="border-t border-dashed border-gray-200 pt-2 mt-2 flex justify-between text-lg font-bold text-gray-900">
+                  <span>Total</span>
+                  <span>{formatPrice(grandTotal)}</span>
+                </div>
+              </div>
+
+              {/* CHECKOUT SELECTED */}
+              <button
+                disabled={selectedItems.length === 0}
+                onClick={() =>
+                  handleCheckout(
+                    cartItems.filter((item) => selectedItems.includes(item._id))
+                  )
+                }
+                className="w-full bg-blue-500 text-white py-3 rounded-lg font-bold hover:bg-blue-600 transition disabled:bg-gray-400"
+              >
+                Checkout Selected
               </button>
-            </div>
-          ))}
-        </div>
 
-        {/* BILL SUMMARY */}
-        <div className="bg-white p-8 border border-blue-100 shadow-[0_6px_20px_rgba(0,0,0,0.10)]">
-          <h3 className="text-2xl font-bold font-heading text-blue-900 mb-7">
-            Bill Summary
-          </h3>
+              {/* CHECKOUT ALL */}
+              <button
+                onClick={() => handleCheckout(cartItems)}
+                className="w-full mt-4 bg-black text-white py-4 rounded-xl font-bold hover:bg-gray-800 transition flex items-center justify-center gap-2 shadow-lg"
+              >
+                Checkout All <ArrowRight className="w-5 h-5" />
+              </button>
 
-          <div className="space-y-4 text-gray-700 font-medium text-md font-body">
-
-            <div className="flex justify-between">
-              <span>Subtotal</span>
-              <span>₹{subtotal.toLocaleString()}</span>
-            </div>
-
-            <div className="flex justify-between">
-              <span>Discount</span>
-              <span className="text-green-600">− ₹{discount}</span>
-            </div>
-
-            <div className="flex justify-between">
-              <span>Shipping</span>
-              <span className="text-blue-700">Free</span>
-            </div>
-
-            <hr className="my-5 border-gray-300" />
-
-            <div className="flex justify-between text-2xl font-semibold text-blue-800 font-heading">
-              <span>Total</span>
-              <span>₹{total.toLocaleString()}</span>
+              <div className="mt-4 flex items-center justify-center gap-2 text-xs text-gray-500">
+                <ShieldCheck className="w-4 h-4 text-green-600" />
+                Safe and Secure Payments
+              </div>
             </div>
           </div>
 
-          <button onClick={() => navigate('/order',{ state: { cartItems } })}
-            className="
-            w-full mt-8 py-4 text-xl font-semibold text-white
-            bg-gradient-to-r from-blue-700 to-blue-500
-            hover:from-blue-600 hover:to-blue-400 transition-all duration-300
-            font-body
-          "
-          >
-            Checkout →
-          </button>
         </div>
-
       </div>
     </div>
   );
