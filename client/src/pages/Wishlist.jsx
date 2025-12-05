@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Trash2, ShoppingCart, Star, Heart } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import CustomFetch from "../utils/CustomFetch";
 
 // Format Price
@@ -13,7 +13,9 @@ const formatPrice = (price) => {
 };
 
 const Wishlist = () => {
+  const navigate = useNavigate();
   const [favList, setFavList] = useState([]);
+
 
   // Fetch favourite products
   const fetchFavourite = async () => {
@@ -38,9 +40,19 @@ const Wishlist = () => {
     setFavList((prev) => prev.filter((item) => item._id !== _id));
   };
 
-  const moveToCart = (_id) => {
-    alert("Item moved to cart!");
-    removeItem(_id);
+  const moveToCart = async (_id) => {
+    try {
+      const add = await CustomFetch.post("/cart/add-to-cart", {
+        productId: _id,
+        quantity: 1,
+      });
+      alert("Added to cart successfully!", add);
+      navigate('/cart');
+      console.log(add);
+    } catch (error) {
+      console.error(error);
+      alert("Failed to add to cart");
+    }
   };
 
   // EMPTY STATE UI

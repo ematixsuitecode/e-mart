@@ -1,19 +1,17 @@
 // src/components/products/ProductCard.jsx
 import React, { useState, useEffect, useRef } from "react";
-import { Heart } from "lucide-react";
+import { Heart, ShoppingCart } from "lucide-react";
 import CustomFetch from "../../utils/CustomFetch";
+import { useNavigate } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
-  
   if (!product) return null;
+  const navigate = useNavigate();
 
   const images = product.imageUrl || [];
   const [index, setIndex] = useState(0);
 
-  // Backend sends product.isFavourite
   const [isFav, setIsFav] = useState(product.isFavourite || false);
-  
-// console.log(isFav, 'favourite data', product);
   const intervalRef = useRef(null);
 
   const nextImg = () => {
@@ -21,10 +19,11 @@ const ProductCard = ({ product }) => {
   };
 
   const prevImg = () => {
-    if (images.length > 1) setIndex((prev) => (prev - 1 + images.length) % images.length);
+    if (images.length > 1)
+      setIndex((prev) => (prev - 1 + images.length) % images.length);
   };
 
-  /* AUTO SLIDE */
+  // Auto-slide
   useEffect(() => {
     if (images.length > 1) {
       intervalRef.current = setInterval(nextImg, 3000);
@@ -32,51 +31,73 @@ const ProductCard = ({ product }) => {
     return () => clearInterval(intervalRef.current);
   }, [images.length]);
 
-  /* PAUSE + RESUME ON HOVER */
   const pauseAutoScroll = () => clearInterval(intervalRef.current);
-  const resumeAutoScroll = () => (intervalRef.current = setInterval(nextImg, 3000));
+  const resumeAutoScroll = () =>
+    (intervalRef.current = setInterval(nextImg, 3000));
 
-  /* ----------------------------------------------------
-   * TOGGLE FAVOURITE (PATCH /product/:id/toggle-favourite)
-   * ---------------------------------------------------- */
+  // Toggle Favourite
   const toggleFavourite = async (e) => {
-    e.stopPropagation(); // Prevent card click default
-
+    e.stopPropagation();
     try {
-      const res = await CustomFetch.patch(`/product/${product._id}/toggle-favourite`);
-
-      // Expecting backend to return updated favourite state:
-      // { success: true, isFavourite: true/false }
+      const res = await CustomFetch.patch(
+        `/product/${product._id}/toggle-favourite`
+      );
       setIsFav(res.data.data.isFavourite);
-      console.log(res.data.data.isFavourite);
-
     } catch (err) {
       console.error("Favourite toggle failed:", err);
       alert("Unable to update favourite");
     }
   };
 
+  // 🛒 ADD TO CART
+  const cartPage = async (e) => {
+    e.stopPropagation(); // prevent opening the product page
+    try {
+      const add = await CustomFetch.post("/cart/add-to-cart", {
+        productId: product._id,
+        quantity: 1,
+      });
+      alert("Added to cart successfully!", add);
+      navigate('/cart');
+      console.log(add);
+    } catch (error) {
+      console.error(error);
+      alert("Failed to add to cart");
+    }
+  };
+
   return (
     <div
-      className="bg-white shadow-sm hover:shadow-md border border-gray-400 overflow-hidden transition-all duration-300 cursor-pointer group relative"
+      className="bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md 
+  transition-all duration-300 cursor-pointer overflow-hidden group relative"
       onMouseEnter={pauseAutoScroll}
       onMouseLeave={resumeAutoScroll}
     >
-      {/* Heart / Favourite Icon */}
+
+      {/* ❤️ FAVOURITE ICON (HIDDEN BY DEFAULT) */}
       <button
         onClick={toggleFavourite}
-        className="absolute right-3 top-3 bg-white p-1.5 rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-all z-20"
+        className="absolute right-3 top-3 bg-white p-2 rounded-full shadow-md z-20
+    opacity-0 group-hover:opacity-100 transition-all hover:scale-110"
       >
         <Heart
-          className={`w-5 h-5 transition-all ${
-            isFav ? "text-red-500 fill-red-500" : "text-gray-600"
-          }`}
+          className={`w-5 h-5 ${isFav ? "text-red-500 fill-red-500" : "text-gray-600"
+            }`}
         />
       </button>
 
-      {/* IMAGE SLIDER */}
-      <div className="w-full h-52 bg-gray-100 overflow-hidden relative">
-        {/* SLIDER TRACK */}
+      {/* 🛒 CART ICON (VISIBLE ALWAYS + GREEN COLOR) */}
+      <button
+        onClick={cartPage}
+        className="absolute right-3 bottom-3 bg-white p-2 rounded-full shadow-md z-20
+    hover:bg-green-100 transition-all duration-300"
+      >
+        <ShoppingCart className="w-5 h-5 text-green-600" />
+      </button>
+
+
+      {/* IMAGE CAROUSEL */}
+      <div className="w-full h-56 bg-gray-50 relative overflow-hidden">
         <div
           className="flex h-full transition-transform duration-700 ease-in-out"
           style={{
@@ -95,19 +116,21 @@ const ProductCard = ({ product }) => {
           ))}
         </div>
 
-        {/* Carousel buttons */}
+        {/* Navigation Buttons */}
         {images.length > 1 && (
           <>
             <button
               onClick={prevImg}
-              className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 p-1 rounded-full shadow z-20"
+              className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/90 px-2 py-1 
+              rounded-full shadow z-20"
             >
               ❮
             </button>
 
             <button
               onClick={nextImg}
-              className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 p-1 rounded-full shadow z-20"
+              className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/90 px-2 py-1 
+              rounded-full shadow z-20"
             >
               ❯
             </button>
@@ -115,31 +138,28 @@ const ProductCard = ({ product }) => {
         )}
       </div>
 
-      {/* Content Section */}
+      {/* PRODUCT DETAILS */}
       <div className="p-4">
-        <h3 className="font-semibold text-gray-800 text-sm line-clamp-2 leading-tight">
+        <h3 className="font-semibold text-gray-900 text-sm line-clamp-2">
           {product.name}
         </h3>
 
-        <p className="text-xs text-gray-500 mt-1 uppercase tracking-wider">
-          {product.brand}
-        </p>
+        <p className="text-xs text-gray-500 mt-1">{product.brand}</p>
 
         <div className="flex items-center gap-2 mt-2">
-          <span className="bg-green-600 text-white text-xs px-2 py-0.5 rounded-md font-bold">
+          <span className="bg-green-600 text-white text-xs px-2 py-0.5 rounded-md font-semibold">
             {product.ratings} ★
           </span>
-
           <span className="text-xs text-gray-500">
             {product.reviews?.length || 0} Reviews
           </span>
         </div>
 
-        <div className="mt-2">
+        <div className="mt-3">
           <p className="text-lg font-bold text-gray-900">
             ₹{product.price.toLocaleString()}
           </p>
-          <p className="text-xs text-gray-500 line-through">
+          <p className="text-xs text-gray-400 line-through">
             ₹{Math.round(product.price * 1.25).toLocaleString()}
           </p>
         </div>
@@ -149,6 +169,8 @@ const ProductCard = ({ product }) => {
 };
 
 export default ProductCard;
+
+
 
 
 

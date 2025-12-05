@@ -22,6 +22,9 @@ import AdminSettingPAge from "./pages/admin/SettingsPage.jsx";
 import AdminCustomerPage from "./pages/admin/CustomersPage.jsx";
 import AdminOrderPage from "./pages/admin/OrderPage.jsx";
 
+import Addresses from "./pages/profile/Addressess.jsx";
+import Orders from "./pages/profile/Addressess.jsx";
+
 import HomeOutlet from "./pages/HomeOutlet.jsx";
 import AdminOutlet from "./pages/AdminOutlet.jsx";
 import Profile from "./pages/admin/Profile.jsx";
@@ -45,6 +48,8 @@ export default function App() {
           <Route index element={<Home />} />
           <Route path="products" element={<Products />} />
           <Route path="products/:id" element={<ProductDetails />} />
+          {/* <Route path="/electronics/product/:id" element={<ElectronicsProductDetails />} /> */}
+          {/* <Route path="/electronics" element={<Electronics />} /> */}
           <Route path="cart" element={<Cart />} />
           <Route path="wishlist" element={<Wishlist />} />
           <Route path="checkout" element={<Checkout />} />
@@ -56,6 +61,9 @@ export default function App() {
           <Route path="todays-special" element={<TodaysSpecial />} />
           <Route path="category/:categoryId" element={<Productpage />} />
           <Route path="99store" element={<Store99 />} />
+
+           <Route path="/profile/addresses" element={<Addresses />} />
+            <Route path="/profile/orders" element={<Orders />} />
         </Route>
 
         {/* ADMIN ROUTES */}

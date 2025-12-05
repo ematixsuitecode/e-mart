@@ -2,49 +2,6 @@ import mongoose from "mongoose";
 import Offer from "../models/offerModel.js";
 import Product from "../models/productModel.js";
 
-// ==============================
-// CREATE NEW OFFER
-// ==============================
-// export const createOffer = async (req, res) => {
-//   try {
-//     const {
-//       productId,
-//       offerType,
-//       specialPrice,
-//       discountPercent,
-//       luckyDrawCode,
-//       maxParticipants,
-//       startDate,
-//       endDate,
-//     } = req.body;
-
-//     // Product must exist
-//     const productExists = await Product.find({_id:productId});
-//     if (!productExists)
-//       return res.status(404).json({ message: "Product not found" });
-
-//     const offer = new Offer({
-//       productId,
-//       offerType,
-//       specialPrice,
-//       discountPercent,
-//       luckyDrawCode,
-//       maxParticipants,
-//       startDate,
-//       endDate,
-//     });
-
-//     await offer.save();
-
-//     return res.status(201).json({
-//       message: "Offer created successfully",
-//       data: offer,
-//     });
-//   } catch (error) {
-//     console.error("Create Offer Error:", error);
-//     res.status(500).json({ message: "Server error", error: error.message });
-//   }
-// };
 
 export const createOffer = async (req, res) => {
   try {
@@ -142,7 +99,7 @@ export const createOffer = async (req, res) => {
         });
       }
 
-      const singleProduct = await Product.findById(productId);
+      const singleProduct = await Product.findById(productId).populate("price discountPrice");
 
       if (!singleProduct) {
         return res.status(404).json({ message: "Product not found" });
@@ -166,6 +123,7 @@ export const createOffer = async (req, res) => {
     });
 
     await offer.save();
+
 
     return res.status(201).json({
       message: "Offer created successfully",
@@ -209,6 +167,37 @@ export const get99StoreOffers = async (req, res) => {
     res.status(500).json({ message: "Server error", error: error.message });
   }
 };
+
+export const getOffersByType = async (req, res) => {
+  try {
+    const { type } = req.params; // dynamic type from URL
+
+    // VALID ENUM VALUES
+    const allowedTypes = ["99_STORE", "LUCKY_DRAW", "DEAL_OF_DAY"];
+
+    // Validate incoming type
+    if (!allowedTypes.includes(type)) {
+      return res.status(400).json({
+        message: "Invalid offer type",
+        allowedTypes
+      });
+    }
+
+    // Fetch offers by type
+    const offers = await Offer.find({ offerType: type })
+      .populate("productIds");
+
+    res.status(200).json({
+      message: `${type} offers fetched successfully`,
+      offers
+    });
+
+  } catch (error) {
+    console.error("Get Offers By Type Error:", error);
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
+};
+
 
 
 // ==============================

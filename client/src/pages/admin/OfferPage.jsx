@@ -15,7 +15,7 @@ export default function OrderPage() {
   const [searchTerm, setSearchTerm] = useState("");
 
   const [offerProducts, setOfferProducts] = useState([]);
-  const [activeOfferType, setActiveOfferType] = useState(null);
+  const [activeOfferType, setActiveOfferType] = useState('99_STORE');
 
   /* --------------------------------------------------------
      Helpers
@@ -35,6 +35,10 @@ export default function OrderPage() {
     const d = new Date(iso);
     return Math.ceil((d - now) / (1000 * 60 * 60 * 24));
   };
+
+  useEffect(() =>{
+    loadOfferProducts("99_STORE");
+  },[]);
 
   /* --------------------------------------------------------
      Fetch Offer Products (99 Store / Lucky Draw / Deal of Day)
@@ -313,7 +317,7 @@ export default function OrderPage() {
                                 {prod.discountPrice
                                   ? `₹${prod.discountPrice}`
                                   : prod.discountPercent
-                                  ? `${prod.discountPercent}%`
+                                  ? `₹ ${prod.discountPercent}`
                                   : "-"}
                               </td>
 
@@ -355,7 +359,7 @@ export default function OrderPage() {
                                   }`}
                                 >
                                   {started && prod.isActive
-                                    ? "Add to Cart"
+                                    ? "Availbale"
                                     : "Not Available"}
                                 </button>
                               </td>

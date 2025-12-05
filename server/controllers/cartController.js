@@ -14,7 +14,7 @@ export const createCart = async (req, res) => {
     // Fetch product from DB
     const product = await Product.findById(productId);
     if (!product) return res.status(404).json({ message: "Product not found" });
-
+    
     const price = product.price;
     const totalPrice = price * quantity;
 
