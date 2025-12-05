@@ -1,6 +1,8 @@
 const OrderSummary = ({ cartItems }) => {
+
+  // Calculate subtotal using real backend fields
   const subtotal = cartItems.reduce(
-    (sum, item) => sum + item.price * item.qty,
+    (sum, item) => sum + item.price * item.quantity,
     0
   );
 
@@ -19,24 +21,31 @@ const OrderSummary = ({ cartItems }) => {
       <div className="divide-y divide-gray-200">
         {cartItems.map((item) => (
           <div
-            key={item.id}
+            key={item._id}
             className="flex items-center gap-4 py-3"
           >
             <img
-              src={item.image}
+              src={item.product.imageUrl?.[0]?.url}
               className="w-16 h-16 object-cover flex-shrink-0"
+              alt={item.product.name}
             />
 
             <div className="flex-1">
-              <h3 className="font-heading text-gray-900 text-sm">{item.name}</h3>
-              <p className="text-xs text-gray-600">{item.specs}</p>
+              <h3 className="font-heading text-gray-900 text-sm">
+                {item.product.name}
+              </h3>
+
+              <p className="text-xs text-gray-600">
+                {item.product.description.slice(0, 40)}...
+              </p>
+
               <p className="font-heading text-blue-700 text-sm">
                 ₹{item.price.toLocaleString()}
               </p>
             </div>
 
             <span className="font-body text-gray-700 text-sm">
-              Qty: {item.qty}
+              Qty: {item.quantity}
             </span>
           </div>
         ))}

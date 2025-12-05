@@ -2,7 +2,8 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 // import backgroundImage from '../../assets/images/nuts.webp';
 import { useState } from 'react';
-// import CustomFetch from '../../utils/CustomFetch';
+import CustomFetch from '../utils/CustomFetch';
+import { Helmet } from 'react-helmet';
 
 export default function LoginPage() {
     const navigation = useNavigate();
@@ -18,7 +19,7 @@ export default function LoginPage() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            // await CustomFetch.post('/auth/login', form);
+            await CustomFetch.post('/auth/login', form);
             alert("Login Successful");
             navigation('/');
         } catch (error) {
@@ -28,9 +29,9 @@ export default function LoginPage() {
 
     return (
         <>
-            {/* <Helmet>
+            <Helmet>
                 <title>Login - E-MART</title>
-            </Helmet> */}
+            </Helmet>
 
             <div className="min-h-screen bg-blue-50 flex flex-col justify-center items-center p-4 relative">
                 {/* <div className="absolute inset-0 bg-cover bg-center opacity-20"

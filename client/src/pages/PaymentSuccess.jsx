@@ -9,8 +9,12 @@ const PaymentSuccess = () => {
 
   return (
     <div className="min-h-screen flex justify-center items-center bg-gradient-to-br from-green-50 to-blue-50 p-6 font-body">
+
+      
       {/* CARD */}
       <div className="bg-white shadow-lg p-8 rounded-2xl max-w-lg w-full border border-gray-200 animate-fadeIn">
+        
+
         {/* SUCCESS ICON */}
         <div className="flex justify-center mb-4">
           <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center shadow-inner">

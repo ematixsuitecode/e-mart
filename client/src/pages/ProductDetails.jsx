@@ -6,6 +6,9 @@ import { Star, Truck, ShieldCheck, Heart, ShoppingCart } from "lucide-react";
 
 const ProductDetails = () => {
   const { id } = useParams();
+
+  console.log(id, 'id value');
+
   const [product, setProduct] = useState(null);
   const [mainImage, setMainImage] = useState("");
 
@@ -14,28 +17,31 @@ const ProductDetails = () => {
     .filter((c) => c !== "filters")
     .flatMap((c) => allProducts[c]);
 
-  const getAllProducts = () => {
-    const products = [];
+    console.log(allItems, 'item details');
 
-    allItems.forEach((group) => {
-      Object.values(group).forEach((categoryArray) => {
-        categoryArray.forEach((product) => {
-          products.push(product);
-        });
+    const getAllProducts = () => {
+  const products = [];
+
+  allItems.forEach(group => {
+    Object.values(group).forEach(categoryArray => {
+      categoryArray.forEach(product => {
+        products.push(product);
       });
     });
+  });
 
-    return products;
-  };
+  return products;
+};
+
   useEffect(() => {
-    const products = getAllProducts();
-    const found = products.find((p) => String(p.id) === String(id));
+  const products = getAllProducts();
+  const found = products.find((p) => String(p.id) === String(id));
 
-    setProduct(found);
-    console.log(found ? found : "Details not found");
+  setProduct(found);
+  console.log(found ? found : "Details not found");
 
-    if (found) setMainImage(found.image);
-  }, [id]);
+  if (found) setMainImage(found.image);
+}, [id]);
 
   if (!product)
     return (

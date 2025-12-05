@@ -1,0 +1,606 @@
+{
+  "electronics": {
+    "Mobiles": [
+      {
+        "id": 1,
+        "name": "Samsung Galaxy S23 Ultra",
+        "brand": "Samsung",
+        "price": 999,
+        "image": "https://m.media-amazon.com/images/I/71goZuIha-L.jpg",
+        "rating": 4.7,
+        "reviews": 2873,
+        "specs": {
+          "ram": "12 GB",
+          "internal_storage": "256 GB",
+          "display": "Super AMOLED",
+          "sim": "Dual Sim"
+        }
+      },
+      {
+        "id": 2,
+        "name": "Apple iPhone 14 Pro Max",
+        "brand": "Apple",
+        "price": 1099,
+        "image": "https://easyphones.co.in/cdn/shop/files/Apple_iPhone_14_pro_Max_-_Refurbished_White.png?v=1755513244",
+        "rating": 4.6,
+        "reviews": 5421,
+        "specs": {
+          "ram": "6 GB",
+          "internal_storage": "256 GB",
+          "display": "Retina",
+          "sim": "Dual Sim(Nano + eSIM)"
+        }
+      }
+    ],
+    "Laptops": [
+      {
+        "id": 3,
+        "name": "MacBook Air M2",
+        "brand": "Apple",
+        "price": 1299,
+        "image": "https://cdn.mos.cms.futurecdn.net/v2/t:0,l:238,cw:1523,ch:857,q:80,w:1523/C6kmbgLbWibKNwWumPmmRe.jpg",
+        "rating": 4.8,
+        "reviews": 4100,
+        "specs": {
+          "ram": "8 GB",
+          "internal_storage": "256 GB",
+          "display": "Retina",
+          "processor": "M2 Chip"
+        }
+      },
+      {
+        "id": 4,
+        "name": "Dell XPS 13",
+        "brand": "Dell",
+        "price": 999,
+        "image": "https://m.media-amazon.com/images/I/51rKK6Tn8-L.jpg",
+        "rating": 4.5,
+        "reviews": 2600,
+        "specs": {
+          "ram": "16 GB",
+          "internal_storage": "512 GB",
+          "display": "InfinityEdge",
+          "processor": "Intel i7"
+        }
+      }
+    ],
+    "Audio": [
+      {
+        "id": 5,
+        "name": "Sony WH-1000XM5",
+        "brand": "Sony",
+        "price": 349,
+        "image": "https://www.rollingstone.com/wp-content/uploads/2025/03/sony-headphones-amazon-deal.png?w=900&h=600&crop=1",
+        "rating": 4.6,
+        "reviews": 3800,
+        "specs": {
+          "type": "Over Ear",
+          "noise_cancellation": "Yes"
+        }
+      },
+      {
+        "id": 6,
+        "name": "Apple AirPods Pro 2",
+        "brand": "Apple",
+        "price": 249,
+        "image": "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/airpods-pro-3-hero-select-202509?wid=976&hei=916&fmt=jpeg&qlt=90&.v=cmp4MmZ6OWxOeHNNTXh4SzlBNUpEb1RucE9zZTI5eEREaWZpY29lSld3eWVDYXovZDMyN1dXU211bjZoVlVUcWJGcXNRQnFCV0w3WVRjTExvdm1ic1YxRUxFRmRlWDBITzhnRmZ5OTRmaVdKTExiOEFsRmxtQ2Nua0tRSC83MkI",
+        "rating": 4.5,
+        "reviews": 5200,
+        "specs": {
+          "type": "In Ear",
+          "noise_cancellation": "Yes"
+        }
+      }
+    ],
+    "Accessories": [
+      {
+        "id": 7,
+        "name": "Samsung 25W Fast Charger",
+        "brand": "Samsung",
+        "price": 29,
+        "image": "https://images.samsung.com/is/image/samsung/p6pim/africa_en/feature/109443132/africa_en-feature-super-fast-charging-to-stay-live-376082323?$FB_TYPE_A_MO_JPG$",
+        "rating": 4.3,
+        "reviews": 1200,
+        "specs": {
+          "type": "Adapter",
+          "power": "25W"
+        }
+      },
+      {
+        "id": 8,
+        "name": "Anker PowerBank 20,000mAh",
+        "brand": "Anker",
+        "price": 49,
+        "image": "https://m.media-amazon.com/images/I/51t3tjvTlVL._SX679_.jpg",
+        "rating": 4.4,
+        "reviews": 2100,
+        "specs": {
+          "battery": "20000mAh",
+          "output": "Fast Charge"
+        }
+      }
+    ]
+  },
+  "grocery": {
+    "Grains": [
+      {
+        "id": 101,
+        "name": "Aashirvaad Atta 10kg",
+        "brand": "Aashirvaad",
+        "price": 6,
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMeBgluFgbWvYVv6M61A3_Yxv9TKftCKIvQw&s",
+        "rating": 4.4,
+        "reviews": 2300,
+        "specs": {
+          "weight": "10kg"
+        }
+      },
+      {
+        "id": 102,
+        "name": "Tata Rice 5kg",
+        "brand": "Tata",
+        "price": 5,
+        "image": "https://www.tatanutrikorner.com/cdn/shop/files/Popular--Pack-1kg-FOP_5252b3a5-28cd-41c4-8f41-7ec2ac6ea385.png?v=1748858413&width=1920",
+        "rating": 4.3,
+        "reviews": 1500,
+        "specs": {
+          "weight": "5kg"
+        }
+      }
+    ],
+    "Oils": [
+      {
+        "id": 103,
+        "name": "Fortune Sunflower Oil 5L",
+        "brand": "Fortune",
+        "price": 8,
+        "image": "https://m.media-amazon.com/images/I/81gBShBlfOL.SY741.jpg",
+        "rating": 4.2,
+        "reviews": 1800
+      },
+      {
+        "id": 104,
+        "name": "Freedom Refined Oil 5L",
+        "brand": "Freedom",
+        "price": 7,
+        "image": "https://m.media-amazon.com/images/I/617RPdz74sL.AC_UF350,350_QL80.jpg",
+        "rating": 4.1,
+        "reviews": 1100
+      }
+    ],
+    "Snacks": [
+      {
+        "id": 105,
+        "name": "Lays Classic Salted",
+        "brand": "Lays",
+        "price": 2,
+        "image": "https://rukminim2.flixcart.com/image/480/640/xif0q/chips/d/b/w/270-classic-salted-potato-3-lay-s-original-imagxz9fq9h58yzh.jpeg?q=90",
+        "rating": 4.2,
+        "reviews": 800
+      },
+      {
+        "id": 106,
+        "name": "Kurkure Masala Munch",
+        "brand": "Kurkure",
+        "price": 1,
+        "image": "https://cdn.quicksell.co/-NgZTIJVW7YR__darKRi/products/-NsSdJYGKdI0kTlefqVM.jpg",
+        "rating": 4.1,
+        "reviews": 900
+      }
+    ],
+    "Beverages": [
+      {
+        "id": 107,
+        "name": "Coca-Cola 2L",
+        "brand": "Coca-Cola",
+        "price": 3,
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpwmCnC7qgNjAB9fJjTGhu1JgrJn6Ae9FiuA&s",
+        "rating": 4.5,
+        "reviews": 2000
+      },
+      {
+        "id": 108,
+        "name": "Tropicana Orange Juice",
+        "brand": "Tropicana",
+        "price": 4,
+        "image": "https://i.pinimg.com/736x/d8/3e/63/d83e631ca67cbbd7f90a394d061787b2.jpg",
+        "rating": 4.4,
+        "reviews": 1600
+      }
+    ]
+  },
+  "appliances": {
+    "Washing Machines": [
+      {
+        "id": 201,
+        "name": "LG 7kg Front Load",
+        "brand": "LG",
+        "price": 450,
+        "image": "https://source.unsplash.com/featured/?washing-machine",
+        "rating": 4.5,
+        "reviews": 1200
+      },
+      {
+        "id": 202,
+        "name": "IFB 8kg Fully Automatic",
+        "brand": "IFB",
+        "price": 499,
+        "image": "https://source.unsplash.com/featured/?laundry",
+        "rating": 4.3,
+        "reviews": 900
+      }
+    ],
+    "Refrigerators": [
+      {
+        "id": 203,
+        "name": "Samsung 253L Double Door",
+        "brand": "Samsung",
+        "price": 520,
+        "image": "https://source.unsplash.com/featured/?refrigerator",
+        "rating": 4.4,
+        "reviews": 900
+      },
+      {
+        "id": 204,
+        "name": "LG 260L Smart Fridge",
+        "brand": "LG",
+        "price": 580,
+        "image": "https://source.unsplash.com/featured/?fridge",
+        "rating": 4.6,
+        "reviews": 800
+      }
+    ],
+    "Microwaves": [
+      {
+        "id": 205,
+        "name": "Samsung Solo Microwave",
+        "brand": "Samsung",
+        "price": 120,
+        "image": "https://source.unsplash.com/featured/?microwave",
+        "rating": 4.3,
+        "reviews": 500
+      },
+      {
+        "id": 206,
+        "name": "LG Convection Oven",
+        "brand": "LG",
+        "price": 180,
+        "image": "https://source.unsplash.com/featured/?oven",
+        "rating": 4.5,
+        "reviews": 600
+      }
+    ],
+    "Air Conditioners": [
+      {
+        "id": 207,
+        "name": "Voltas 1.5 Ton AC",
+        "brand": "Voltas",
+        "price": 650,
+        "image": "https://source.unsplash.com/featured/?air-conditioner",
+        "rating": 4.4,
+        "reviews": 700
+      },
+      {
+        "id": 208,
+        "name": "Daikin Split AC",
+        "brand": "Daikin",
+        "price": 720,
+        "image": "https://source.unsplash.com/featured/?cooling",
+        "rating": 4.5,
+        "reviews": 800
+      }
+    ]
+  },
+  "fashion_beauty": {
+    "Men": [
+      {
+        "id": 301,
+        "name": "Men’s Casual Shirt",
+        "brand": "H&M",
+        "price": 25,
+        "image": "https://source.unsplash.com/featured/?mens-fashion",
+        "rating": 4.3,
+        "reviews": 1200
+      },
+      {
+        "id": 302,
+        "name": "Men’s Slim Jeans",
+        "brand": "Levis",
+        "price": 40,
+        "image": "https://source.unsplash.com/featured/?jeans",
+        "rating": 4.4,
+        "reviews": 900
+      }
+    ],
+    "Women": [
+      {
+        "id": 303,
+        "name": "Women’s Maxi Dress",
+        "brand": "Zara",
+        "price": 45,
+        "image": "https://source.unsplash.com/featured/?dress",
+        "rating": 4.5,
+        "reviews": 1500
+      },
+      {
+        "id": 304,
+        "name": "Women’s Handbag",
+        "brand": "Lavie",
+        "price": 55,
+        "image": "https://source.unsplash.com/featured/?handbag",
+        "rating": 4.4,
+        "reviews": 1100
+      }
+    ],
+    "Beauty": [
+      {
+        "id": 305,
+        "name": "Lakme Skin Cream",
+        "brand": "Lakme",
+        "price": 10,
+        "image": "https://source.unsplash.com/featured/?makeup",
+        "rating": 4.2,
+        "reviews": 900
+      },
+      {
+        "id": 306,
+        "name": "Maybelline Mascara",
+        "brand": "Maybelline",
+        "price": 12,
+        "image": "https://source.unsplash.com/featured/?cosmetics",
+        "rating": 4.4,
+        "reviews": 1000
+      }
+    ],
+    "Footwear": [
+      {
+        "id": 307,
+        "name": "Nike Air Shoes",
+        "brand": "Nike",
+        "price": 120,
+        "image": "https://source.unsplash.com/featured/?sneakers",
+        "rating": 4.7,
+        "reviews": 1800
+      },
+      {
+        "id": 308,
+        "name": "Adidas Running Shoes",
+        "brand": "Adidas",
+        "price": 100,
+        "image": "https://source.unsplash.com/featured/?running-shoes",
+        "rating": 4.6,
+        "reviews": 1500
+      }
+    ]
+  },
+  "home_utilities": {
+    "Cleaning": [
+      {
+        "id": 401,
+        "name": "Dettol Surface Cleaner",
+        "brand": "Dettol",
+        "price": 4,
+        "image": "https://source.unsplash.com/featured/?cleaning",
+        "rating": 4.5,
+        "reviews": 1500
+      },
+      {
+        "id": 402,
+        "name": "Harpic Toilet Cleaner",
+        "brand": "Harpic",
+        "price": 3,
+        "image": "https://source.unsplash.com/featured/?bathroom-cleaning",
+        "rating": 4.3,
+        "reviews": 1300
+      }
+    ],
+    "Kitchen": [
+      {
+        "id": 403,
+        "name": "Prestige Non-stick Pan",
+        "brand": "Prestige",
+        "price": 20,
+        "image": "https://source.unsplash.com/featured/?kitchen",
+        "rating": 4.4,
+        "reviews": 1000
+      },
+      {
+        "id": 404,
+        "name": "Stainless Steel Knife Set",
+        "brand": "Pigeon",
+        "price": 15,
+        "image": "https://source.unsplash.com/featured/?knife",
+        "rating": 4.2,
+        "reviews": 900
+      }
+    ],
+    "Storage": [
+      {
+        "id": 405,
+        "name": "Plastic Container Set",
+        "brand": "Cello",
+        "price": 12,
+        "image": "https://source.unsplash.com/featured/?storage-box",
+        "rating": 4.4,
+        "reviews": 1200
+      },
+      {
+        "id": 406,
+        "name": "Glass Jar Set",
+        "brand": "Milton",
+        "price": 18,
+        "image": "https://source.unsplash.com/featured/?glass-jar",
+        "rating": 4.5,
+        "reviews": 1000
+      }
+    ],
+    "Decor": [
+      {
+        "id": 407,
+        "name": "Wall Painting",
+        "brand": "ArtDeco",
+        "price": 30,
+        "image": "https://source.unsplash.com/featured/?home-decor",
+        "rating": 4.6,
+        "reviews": 800
+      },
+      {
+        "id": 408,
+        "name": "LED Table Lamp",
+        "brand": "Philips",
+        "price": 25,
+        "image": "https://source.unsplash.com/featured/?table-lamp",
+        "rating": 4.5,
+        "reviews": 700
+      }
+    ]
+  },
+  "filters": {
+    "electronics": [
+      {
+        "key": "brand",
+        "label": "Brand",
+        "type": "checkbox",
+        "values": ["Samsung", "Apple", "Dell", "Sony", "Anker"]
+      },
+      {
+        "key": "ram",
+        "label": "RAM",
+        "type": "checkbox",
+        "values": ["4 GB", "8 GB", "12 GB", "16 GB"]
+      },
+      {
+        "key": "display",
+        "label": "Display Type",
+        "type": "checkbox",
+        "values": ["AMOLED", "Retina", "LED", "IPS LCD"]
+      },
+      {
+        "key": "price",
+        "label": "Price",
+        "type": "price_range",
+        "min": 0,
+        "max": 200000
+      },
+      {
+        "key": "rating",
+        "label": "Customer Ratings",
+        "type": "rating",
+        "values": ["4", "3"]
+      }
+    ],
+    "grocery": [
+      {
+        "key": "brand",
+        "label": "Brand",
+        "type": "checkbox",
+        "values": ["Aashirvaad", "Tata", "Fortune", "Kurkure"]
+      },
+      {
+        "key": "type",
+        "label": "Category",
+        "type": "checkbox",
+        "values": ["Flour", "Rice", "Oil", "Beverage"]
+      },
+      {
+        "key": "rating",
+        "label": "Customer Ratings",
+        "type": "rating",
+        "values": ["4", "3"]
+      }
+    ],
+    "appliances": [
+      {
+        "key": "brand",
+        "label": "Brand",
+        "type": "checkbox",
+        "values": ["LG", "Samsung", "IFB", "Daikin"]
+      },
+      {
+        "key": "type",
+        "label": "Type",
+        "type": "checkbox",
+        "values": ["Washing Machine", "Refrigerator", "Microwave", "AC"]
+      },
+      {
+        "key": "rating",
+        "label": "Customer Ratings",
+        "type": "rating",
+        "values": ["4", "3"]
+      }
+    ],
+    "fashion_beauty": [
+      {
+        "key": "brand",
+        "label": "Brand",
+        "type": "checkbox",
+        "values": ["H&M", "Zara", "Nike", "Adidas"]
+      },
+      {
+        "key": "type",
+        "label": "Type",
+        "type": "checkbox",
+        "values": ["Men", "Women", "Beauty", "Footwear"]
+      },
+      {
+        "key": "rating",
+        "label": "Customer Ratings",
+        "type": "rating",
+        "values": ["4", "3"]
+      }
+    ],
+    "home_utilities": [
+      {
+        "key": "brand",
+        "label": "Brand",
+        "type": "checkbox",
+        "values": ["Dettol", "Prestige", "Milton", "Philips"]
+      },
+      {
+        "key": "type",
+        "label": "Category",
+        "type": "checkbox",
+        "values": ["Cleaning", "Kitchen", "Storage", "Decor"]
+      },
+      {
+        "key": "rating",
+        "label": "Customer Ratings",
+        "type": "rating",
+        "values": ["4", "3"]
+      }
+    ],
+    "categoryImages": [
+      {
+        "electronics": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0Q0E1ATVDh9qUMfks5GaxRvHBjBQh8xl11Q&s",
+        "grocery": "https://cdn.prod.website-files.com/637f7c161a14232e2ea8473d/68273472635fcbdfa369f2e3_Untitled%20design%20(5)-compressed.jpg",
+        "appliances": "https://5.imimg.com/data5/GL/AB/GLADMIN-37892088/home-appliances.jpg",
+        "fashion_beauty": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSv_TJIWe-lzlefo3sFlaxcQFYwnho99Jff4Q&s",
+        "home_utilities": "https://img.freepik.com/free-vector/smart-home-flat-style_24908-55815.jpg?semt=ais_hybrid&w=740&q=80"
+      }
+    ],
+    "subcategoryImages": [
+      {
+        "Mobiles": "https://5.imimg.com/data5/SELLER/Default/2021/9/HR/PW/SE/32162519/vivo-mobile-phone.png",
+        "Laptops": "https://i.rtings.com/assets/pages/6S2WXjTl/best-laptops-20240516-medium.jpg?format=auto",
+        "Audio": "https://m.media-amazon.com/images/I/710rTCUgS4L.AC_UF1000,1000_QL80.jpg",
+        "Accessories": "https://promova.com/content/accessory_79573b939f.png",
+        "Grains": "https://img.freepik.com/free-psd/collection-various-grains-seeds-wooden-bowls_191095-86142.jpg?semt=ais_hybrid&w=740&q=80",
+        "Oils": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRK4IifUqbEy4cOxFQDils8hHFhbzfxT0E3GQ&s",
+        "Snacks": "https://media.istockphoto.com/id/1263686908/photo/mixed-salty-snack-flat-lay-table-scene-on-a-wood-background.jpg?s=612x612&w=0&k=20&c=rCZ-gpvz--NpeNA0cYGCyJj3EK0kFUSkvdsow9u4I3o=",
+        "Beverages": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGtkoq9V7ETfgOoA7ocitS9apGg1a0ukHlSg&s",
+        "Washing Machines": "https://yourcdn.com/images/washing-machines.jpg",
+        "Refrigerators": "https://yourcdn.com/images/refrigerators.jpg",
+        "Microwaves": "https://yourcdn.com/images/microwaves.jpg",
+        "Air Conditioners": "https://yourcdn.com/images/air-conditioners.jpg",
+        "Men": "https://yourcdn.com/images/mens-fashion.jpg",
+        "Women": "https://yourcdn.com/images/womens-fashion.jpg",
+        "Beauty": "https://yourcdn.com/images/beauty.jpg",
+        "Footwear": "https://yourcdn.com/images/footwear.jpg",
+        "Cleaning": "https://yourcdn.com/images/cleaning.jpg",
+        "Kitchen": "https://yourcdn.com/images/kitchen.jpg",
+        "Storage": "https://yourcdn.com/images/storage.jpg",
+        "Decor": "https://yourcdn.com/images/decor.jpg"
+      }
+    ]
+  }
+}

@@ -1,151 +1,163 @@
-import React, { useState } from "react";
-import { Heart, ShoppingCart, Trash2 } from "lucide-react";
-import iphone from "../assets/iphone.png";
-import samsung from "../assets/samsung.png";
-import sony from "../assets/sony.png";
+import React, { useEffect, useState } from "react";
+import { Trash2, ShoppingCart, Star, Heart } from "lucide-react";
+import { Link } from "react-router-dom";
+import CustomFetch from "../utils/CustomFetch";
 
-import audio from "../assets/audio.png";
+// Format Price
+const formatPrice = (price) => {
+  return new Intl.NumberFormat("en-IN", {
+    style: "currency",
+    currency: "INR",
+    maximumFractionDigits: 0,
+  }).format(price);
+};
 
 const Wishlist = () => {
-  const [wishlist, setWishlist] = useState([
-    {
-      id: 1,
-      name: "Apple iPhone 14 Pro",
-      image: iphone,
-      price: 112900,
-      rating: 4.8,
-      reviews: "24,721",
-      description:
-        "A16 Bionic • 48MP Pro Camera • Dynamic Island • Always-On display",
-    },
-    {
-      id: 2,
-      name: "Samsung Galaxy S23 Ultra",
-      image: samsung,
-      price: 124999,
-      rating: 4.7,
-      reviews: "18,342",
-      description:
-        "200MP camera • Snapdragon 8 Gen 2 • 5000 mAh battery • S-Pen included",
-    },
-    {
-      id: 3,
-      name: "Sony WH-1000XM5 Headphones",
-      image: sony,
-      price: 29990,
-      rating: 4.6,
-      reviews: "9,503",
-      description:
-        "Industry-leading ANC • 30hr battery • Crystal-clear microphone quality",
-    },
-    {
-      id: 4,
-      name: "OnePlus Buds Pro 2",
-      image: audio,
-      price: 11999,
-      rating: 4.5,
-      reviews: "12,118",
-      description:
-        "Smart Adaptive Noise Cancellation • Dual Drivers • Spatial Audio • Up to 39hrs playback",
-    },
-  ]);
+  const [favList, setFavList] = useState([]);
 
-  const removeItem = (id) => {
-    setWishlist((prev) => prev.filter((item) => item.id !== id));
+  // Fetch favourite products
+  const fetchFavourite = async () => {
+    try {
+      const favourite = await CustomFetch.get("/product");
+      const allProducts = favourite.data.data;
+
+      const favOnly = allProducts.filter((p) => p.isFavourite === true);
+      setFavList(favOnly);
+
+    } catch (err) {
+      console.error("Failed to fetch favourites:", err);
+    }
   };
 
-  const moveToCart = (id) => {
+  useEffect(() => {
+    fetchFavourite();
+  }, []);
+
+  // Remove item
+  const removeItem = async (_id) => {
+    setFavList((prev) => prev.filter((item) => item._id !== _id));
+  };
+
+  const moveToCart = (_id) => {
     alert("Item moved to cart!");
-    removeItem(id);
+    removeItem(_id);
   };
+
+  // EMPTY STATE UI
+  if (favList.length === 0) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-4 text-center">
+        <div className="w-24 h-24 bg-red-100 rounded-full flex items-center justify-center mb-4">
+          <Heart className="w-10 h-10 text-red-500 fill-current" />
+        </div>
+
+        <h2 className="text-2xl font-bold text-gray-900 mb-2">Your Wishlist is Empty</h2>
+        <p className="text-gray-500 mb-6">Save items you love to buy later.</p>
+
+        <Link
+          to="/"
+          className="bg-indigo-600 text-white px-8 py-3 rounded-full font-bold shadow-lg hover:bg-indigo-700 transition"
+        >
+          Continue Shopping
+        </Link>
+      </div>
+    );
+  }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#edf4ff] to-[#f8fbff] p-6 font-body">
-      <div className="max-w-7xl mx-auto">
-        {/* Page Title */}
-        <h1 className="text-4xl font-bold text-center text-blue-900 mb-10 tracking-tight font-heading">
-          My Wishlist
+    <div className="bg-gray-50 min-h-screen font-sans pb-20">
+      <div className="container mx-auto px-4 py-8">
+
+        <h1 className="text-3xl font-bold text-gray-900 mb-6">
+          My Wishlist ({favList.length})
         </h1>
 
-        {/* Wishlist Grid - 4 Cards Per Row */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-7">
-          {wishlist.map((item) => (
+        {/* GRID */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+
+          {favList.map((item) => (
             <div
-              key={item.id}
-              className="
-                bg-white p-4 shadow-sm
-                border border-gray-300 
-                hover:shadow-[0_6px_20px_rgba(0,0,0,0.08)]
-                hover:-translate-y-1 transition-all duration-300
-              "
+              key={item._id}
+              className="bg-white rounded-xl border border-gray-200 p-4 shadow-sm hover:shadow-lg transition relative flex flex-col group"
             >
-              {/* IMAGE */}
-              <div
-                className="
-                  w-full h-36 mb-3 flex items-center justify-center relative 
-                  border border-gray-300 
-                "
+
+              {/* Remove button */}
+              <button
+                onClick={() => removeItem(item._id)}
+                className="absolute top-3 right-3 p-2 bg-white rounded-full text-gray-400 hover:text-red-500 hover:bg-red-50 transition shadow-sm border border-gray-100"
               >
+                <Trash2 className="w-4 h-4" />
+              </button>
+
+              {/* IMAGE */}
+              <div className="relative aspect-square mb-4 overflow-hidden rounded-lg bg-gray-50 p-4">
                 <img
-                  src={item.image}
-                  alt=""
-                  className="object-contain h-full w-auto p-1"
+                  src={item.imageUrl?.[0]?.url}
+                  alt={item.name}
+                  className="w-full h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform"
                 />
-
-                <button className="absolute top-2 right-2 text-red-500">
-                  <Heart fill="red" size={18} />
-                </button>
               </div>
 
-              {/* NAME */}
-              <h2 className="text-base font-semibold text-gray-900 font-heading">
-                {item.name}
-              </h2>
+              {/* CONTENT */}
+              <div className="flex-1 flex flex-col">
 
-              {/* DESCRIPTION */}
-              <p className="text-gray-600 text-xs mt-1 leading-snug font-body">
-                {item.description}
-              </p>
+                {/* BRAND + NAME */}
+                <div className="mb-1">
+                  <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">
+                    {item.brand || "Brand"}
+                  </span>
 
-              {/* RATING */}
-              <div className="flex items-center gap-2 mt-2">
-                <div className="flex text-yellow-400 text-xs">★★★★☆</div>
-                <span className="text-xs text-gray-600">
-                  ({item.reviews} reviews)
-                </span>
+                  <p className="block text-sm font-bold text-gray-900 leading-snug hover:text-blue-600 transition line-clamp-2 mb-1">
+                    {item.name}
+                  </p>
+                </div>
+
+                {/* RATING */}
+                <div className="flex items-center gap-1 mb-3">
+                  <div className="flex text-yellow-400 text-xs">
+                    {[...Array(5)].map((_, i) => (
+                      <Star
+                        key={i}
+                        className={`w-3 h-3 ${
+                          i < Math.floor(item.rating || 4) ? "fill-current" : "text-gray-300"
+                        }`}
+                      />
+                    ))}
+                  </div>
+
+                  <span className="text-xs text-gray-400">
+                    ({item.reviews?.length || 0})
+                  </span>
+                </div>
+
+                {/* PRICE + ADD TO CART */}
+                <div className="mt-auto pt-3 border-t border-gray-50 flex items-center justify-between">
+
+                  <div className="flex flex-col">
+                    <span className="text-lg font-bold text-gray-900">
+                      {formatPrice(item.price)}
+                    </span>
+
+                    {item.price > 500 && (
+                      <span className="text-xs text-gray-400 line-through">
+                        {formatPrice(item.price * 1.15)}
+                      </span>
+                    )}
+                  </div>
+
+                  <button
+                    onClick={() => moveToCart(item._id)}
+                    className="bg-black text-white p-2.5 rounded-lg hover:bg-gray-800 transition active:scale-95 shadow-md"
+                  >
+                    <ShoppingCart className="w-4 h-4" />
+                  </button>
+
+                </div>
               </div>
 
-              {/* PRICE */}
-              <p className="text-xl font-bold text-blue-700 mt-2 font-heading">
-                ₹{item.price.toLocaleString()}
-              </p>
-
-              {/* BUTTONS */}
-              <div className="flex items-center gap-25 mt-4">
-                <button
-                  onClick={() => moveToCart(item.id)}
-                  className="
-                    flex items-center justify-center gap-2 w-32 py-2
-                    bg-blue-600 text-white font-semibold text-xs font-body
-                    hover:bg-blue-700 transition
-                  "
-                >
-                  <ShoppingCart size={15} />
-                  Move to Cart
-                </button>
-
-                <button
-                  onClick={() => removeItem(item.id)}
-                  className="
-                    p-2 bg-red-100 text-red-600
-                    hover:bg-red-200 transition
-                  "
-                >
-                  <Trash2 size={17} />
-                </button>
-              </div>
             </div>
           ))}
+
         </div>
       </div>
     </div>

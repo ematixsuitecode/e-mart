@@ -2,12 +2,32 @@
 import React, { useMemo, useState, useEffect } from "react";
 import ProductCard from "../components/products/ProductCard";
 
-// master JSON
+// master JSON (kept as required)
 import allProductsMaster from "../data/products.json";
+
+import CustomFetch from "../utils/CustomFetch";
 
 const Products = () => {
   /* ---------------------------------------
-   * 1. FLATTEN ALL PRODUCTS FROM ALL CATEGORIES
+   * 1. FETCH API PRODUCTS
+   --------------------------------------- */
+  const [apiProducts, setApiProducts] = useState([]);
+
+  const fetchProductDetails = async () => {
+    try {
+      const res = await CustomFetch.get("/product");
+      setApiProducts(res.data.data || []);   // load API products
+    } catch (error) {
+      alert("Failed to fetch product");
+    }
+  };
+
+  useEffect(() => {
+    fetchProductDetails();
+  }, []);
+
+  /* ---------------------------------------
+   * 2. DUMMY JSON PRODUCTS (UNCHANGED — KEEP AS IS)
    --------------------------------------- */
   const allProducts = useMemo(() => {
     return Object.keys(allProductsMaster)
@@ -16,44 +36,54 @@ const Products = () => {
   }, []);
 
   /* ---------------------------------------
-   * 2. STATES
+   * 3. COMBINE API + DUMMY PRODUCTS
    --------------------------------------- */
-  const [filteredProducts, setFilteredProducts] = useState(allProducts);
+  const combinedProducts = useMemo(() => {
+    return [...apiProducts, ...allProducts];
+  }, [apiProducts, allProducts]);
+
+  /* ---------------------------------------
+   * 4. FILTER STATES
+   --------------------------------------- */
+  const [filteredProducts, setFilteredProducts] = useState([]);
   const [activeFilters, setActiveFilters] = useState({});
   const [sortOrder, setSortOrder] = useState("popular");
   const [priceRange, setPriceRange] = useState(200000);
 
   /* ---------------------------------------
-   * 3. GLOBAL FILTERS
+   * 5. GLOBAL FILTERS
    --------------------------------------- */
-  const globalFilters = [
-    {
-      key: "brand",
-      label: "Brand",
-      type: "checkbox",
-      values: Array.from(new Set(allProducts.map((p) => p.brand))),
-    },
-    {
-      key: "rating",
-      label: "Min Rating",
-      type: "rating",
-      values: ["4", "3"],
-    },
-    {
-      key: "price",
-      label: "Price",
-      type: "price_range",
-      min: 0,
-      max: 200000,
-    },
-  ];
+  const globalFilters = useMemo(() => {
+    return [
+      {
+        key: "brand",
+        label: "Brand",
+        type: "checkbox",
+        values: Array.from(new Set(combinedProducts.map((p) => p.brand))),
+      },
+      {
+        key: "rating",
+        label: "Min Rating",
+        type: "rating",
+        values: ["4", "3"],
+      },
+      {
+        key: "price",
+        label: "Price",
+        type: "price_range",
+        min: 0,
+        max: 200000,
+      },
+    ];
+  }, [combinedProducts]);
 
   /* ---------------------------------------
-   * 4. FILTER ENGINE
+   * 6. FILTER ENGINE
    --------------------------------------- */
   useEffect(() => {
-    let result = [...allProducts];
+    let result = [...combinedProducts];
 
+    // Apply selected filters
     Object.keys(activeFilters).forEach((key) => {
       const selected = activeFilters[key];
       if (!selected.length) return;
@@ -61,21 +91,21 @@ const Products = () => {
       result = result.filter((p) => {
         if (key === "rating") {
           const min = parseInt(selected[0], 10);
-          return p.rating >= min;
+          return (p.ratings ?? p.rating) >= min;
         }
         return selected.includes(p[key]);
       });
     });
 
-    result = result.filter((p) => p.price * 84 <= priceRange);
+    // Price filter
+    result = result.filter((p) => p.price <= priceRange);
 
+    // Sorting
     if (sortOrder === "lowToHigh") result.sort((a, b) => a.price - b.price);
     if (sortOrder === "highToLow") result.sort((a, b) => b.price - a.price);
-    if (sortOrder === "newest")
-      result.sort((a, b) => (b.id ?? 0) - (a.id ?? 0));
 
     setFilteredProducts(result);
-  }, [activeFilters, priceRange, sortOrder, allProducts]);
+  }, [activeFilters, priceRange, sortOrder, combinedProducts]);
 
   const handleFilterChange = (key, value) => {
     setActiveFilters((prev) => {
@@ -95,16 +125,12 @@ const Products = () => {
   };
 
   /* ---------------------------------------
-   * 5. INSERT AD BANNERS AFTER EVERY 8 PRODUCTS
+   * 7. AD BANNERS
    --------------------------------------- */
   const adBanners = [
     "https://cdn.pixabay.com/photo/2019/04/10/15/06/sale-4114885_1280.jpg",
     "https://cdn.pixabay.com/photo/2016/11/29/03/52/sale-1860031_1280.jpg",
     "https://cdn.pixabay.com/photo/2017/07/31/11/20/smartphone-2568618_1280.jpg",
-    "https://cdn.pixabay.com/photo/2016/11/29/04/17/online-1863425_1280.jpg",
-    "https://cdn.pixabay.com/photo/2017/11/27/23/54/living-room-2989693_1280.jpg",
-    "https://cdn.pixabay.com/photo/2017/08/12/16/06/kitchen-2631942_1280.jpg",
-    "https://cdn.pixabay.com/photo/2017/01/12/14/23/vegetables-1978521_1280.jpg",
   ];
 
   const productWithAds = useMemo(() => {
@@ -121,18 +147,16 @@ const Products = () => {
         });
       }
     });
-
     return result;
   }, [filteredProducts]);
 
   /* ---------------------------------------
-   * 6. RENDER UI
+   * 8. RENDER UI
    --------------------------------------- */
   return (
     <div className="bg-white min-h-screen font-sans container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-6">All Products</h1>
 
-      {/* MAIN LAYOUT */}
       <div className="flex gap-10">
         {/* LEFT — FILTERS */}
         <aside className="w-64 hidden md:block sticky top-20 h-[calc(100vh-120px)] overflow-y-auto border-r pr-4">
@@ -147,6 +171,7 @@ const Products = () => {
             <div key={f.key} className="mb-6">
               <p className="font-semibold mb-2">{f.label}</p>
 
+              {/* CHECKBOX FILTER */}
               {f.type === "checkbox" &&
                 f.values.map((val) => (
                   <label key={val} className="block text-sm mb-1">
@@ -160,6 +185,7 @@ const Products = () => {
                   </label>
                 ))}
 
+              {/* PRICE RANGE */}
               {f.type === "price_range" && (
                 <>
                   <input
@@ -176,6 +202,7 @@ const Products = () => {
                 </>
               )}
 
+              {/* RATING FILTER */}
               {f.type === "rating" &&
                 f.values.map((v) => (
                   <button
@@ -194,11 +221,8 @@ const Products = () => {
           ))}
         </aside>
 
-        {/* RIGHT — SCROLLABLE PRODUCT AREA */}
+        {/* RIGHT — PRODUCT GRID */}
         <main className="flex-1 h-[calc(100vh-120px)] overflow-y-auto">
-          {/* SORT BAR */}
-
-          {/* PRODUCT GRID + AD BANNERS */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pb-20">
             {productWithAds.map((item) =>
               item.isAd ? (
@@ -213,7 +237,7 @@ const Products = () => {
                   />
                 </div>
               ) : (
-                <ProductCard key={item.id} product={item} />
+                <ProductCard key={item._id || item.id} product={item} />
               )
             )}
           </div>
