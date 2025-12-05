@@ -16,7 +16,7 @@ const router = express.Router();
 // CREATE OFFER
 router.post("/", createOffer);
 
-router.get("/99-store", get99StoreOffers);
+router.get("/99_store", get99StoreOffers);
 
 // GET ALL OFFERS
 router.get("/", getAllOffers);
