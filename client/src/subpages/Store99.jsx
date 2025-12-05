@@ -16,7 +16,7 @@ const Store99 = () => {
 
   const load99StoreOffers = async () => {
     try {
-      const res = await CustomFetch.get("/offer/99-store");
+      const res = await CustomFetch.get("/offer/99_store");
       setOfferList(res.data.data || []);
     } catch (error) {
       console.log("Failed to fetch 99 store offers", error);
