@@ -286,9 +286,10 @@ export default function AdminProductsPage() {
 
     const applyDeal = async ({ productId, discount, startDate, endDate }) => {
         try {
-            await CustomFetch.post('/offer/deal', {
+            await CustomFetch.post('/offer', {
+                offerType: 'DEAL_OF_DAY',
                 productId,
-                discount,
+                discountPercent:discount,
                 startDate,
                 endDate
             })

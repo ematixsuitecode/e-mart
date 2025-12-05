@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ShoppingCart, Star, Search, ArrowLeft, Lock } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import CustomFetch from '../utils/CustomFetch';
 
 const formatINR = (price) => {
@@ -13,6 +13,8 @@ const formatINR = (price) => {
 
 const Store99 = () => {
   const [offerList, setOfferList] = useState([]);
+
+  const navigate = useNavigate();
 
   const load99StoreOffers = async () => {
     try {
@@ -53,6 +55,21 @@ const Store99 = () => {
       active: true
     };
   };
+
+    const moveToCart = async (_id) => {
+      try {
+        const add = await CustomFetch.post("/cart/add-to-cart", {
+          productId: _id,
+          quantity: 1,
+        });
+        alert("Added to cart successfully!", add);
+        navigate('/cart');
+        console.log(add);
+      } catch (error) {
+        console.error(error);
+        alert("Failed to add to cart");
+      }
+    };
 
   return (
     <div className="bg-yellow-50 min-h-screen font-sans pb-12">
@@ -145,7 +162,7 @@ const Store99 = () => {
 
                         {/* Add to cart */}
                         <button
-                          disabled={!status.active}
+                          disabled={!status.active} onClick={() => moveToCart(p._id)}
                           className={`p-2 rounded-full transition shadow-sm ${
                             status.active
                               ? "bg-yellow-400 text-yellow-900 hover:bg-yellow-500 hover:text-white"

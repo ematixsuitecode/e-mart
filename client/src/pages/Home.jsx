@@ -768,9 +768,10 @@ const HeroSlider = () => {
 /* ------------------------------- DEAL ZONE -------------------------------- */
 
 const DealZone = () => {
-  const dealProducts = (allProducts || [])
-    .filter((p) => p.price < 150)
-    .slice(0, 5);
+ const dealProducts = flattenProducts()
+  .filter((p) => p.price < 150)
+  .slice(0, 5);
+
 
   return (
     <section className="relative z-20 mt-8 mb-12">
@@ -1047,9 +1048,10 @@ const TrendingProducts = () => {
 
 const RecommendedProducts = () => {
   // Use products from JSON that are tagged as "Best Seller" or "Trending"
-  const recommended = (allProducts || [])
-    .filter((p) => p.tag === "Best Seller" || p.tag === "Trending")
-    .slice(0, 8);
+  const recommended = flattenProducts()
+  .filter((p) => p.tag === "Best Seller" || p.tag === "Trending")
+  .slice(0, 8);
+
 
   return (
     <section className="bg-gray-50 py-16 border-t border-gray-200">

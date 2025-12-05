@@ -1,10 +1,12 @@
 // src/components/products/ProductCard.jsx
 import React, { useState, useEffect, useRef } from "react";
-import { Heart } from "lucide-react";
+import { Heart, ShoppingCart } from "lucide-react";
 import CustomFetch from "../../utils/CustomFetch";
+import { useNavigate } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
   if (!product) return null;
+  const navigate = useNavigate();
 
   const images = product.imageUrl || [];
   const [index, setIndex] = useState(0);
@@ -47,25 +49,52 @@ const ProductCard = ({ product }) => {
     }
   };
 
+  // 🛒 ADD TO CART
+  const cartPage = async (e) => {
+    e.stopPropagation(); // prevent opening the product page
+    try {
+      const add = await CustomFetch.post("/cart/add-to-cart", {
+        productId: product._id,
+        quantity: 1,
+      });
+      alert("Added to cart successfully!", add);
+      navigate('/cart');
+      console.log(add);
+    } catch (error) {
+      console.error(error);
+      alert("Failed to add to cart");
+    }
+  };
+
   return (
     <div
       className="bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md 
-      transition-all duration-300 cursor-pointer overflow-hidden group"
+  transition-all duration-300 cursor-pointer overflow-hidden group relative"
       onMouseEnter={pauseAutoScroll}
       onMouseLeave={resumeAutoScroll}
     >
-      {/* Favourite Icon */}
+
+      {/* ❤️ FAVOURITE ICON (HIDDEN BY DEFAULT) */}
       <button
         onClick={toggleFavourite}
         className="absolute right-3 top-3 bg-white p-2 rounded-full shadow-md z-20
-        hover:scale-110 transition-all"
+    opacity-0 group-hover:opacity-100 transition-all hover:scale-110"
       >
         <Heart
-          className={`w-5 h-5 ${
-            isFav ? "text-red-500 fill-red-500" : "text-gray-600"
-          }`}
+          className={`w-5 h-5 ${isFav ? "text-red-500 fill-red-500" : "text-gray-600"
+            }`}
         />
       </button>
+
+      {/* 🛒 CART ICON (VISIBLE ALWAYS + GREEN COLOR) */}
+      <button
+        onClick={cartPage}
+        className="absolute right-3 bottom-3 bg-white p-2 rounded-full shadow-md z-20
+    hover:bg-green-100 transition-all duration-300"
+      >
+        <ShoppingCart className="w-5 h-5 text-green-600" />
+      </button>
+
 
       {/* IMAGE CAROUSEL */}
       <div className="w-full h-56 bg-gray-50 relative overflow-hidden">
@@ -126,7 +155,6 @@ const ProductCard = ({ product }) => {
           </span>
         </div>
 
-        {/* PRICE */}
         <div className="mt-3">
           <p className="text-lg font-bold text-gray-900">
             ₹{product.price.toLocaleString()}
@@ -141,6 +169,7 @@ const ProductCard = ({ product }) => {
 };
 
 export default ProductCard;
+
 
 
 

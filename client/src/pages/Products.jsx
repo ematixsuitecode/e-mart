@@ -208,11 +208,10 @@ const Products = () => {
                   <button
                     key={v}
                     onClick={() => handleFilterChange("rating", v)}
-                    className={`block w-full border p-2 rounded mb-1 ${
-                      activeFilters.rating?.includes(v)
+                    className={`block w-full border p-2 rounded mb-1 ${activeFilters.rating?.includes(v)
                         ? "bg-blue-600 text-white"
                         : "bg-gray-100"
-                    }`}
+                      }`}
                   >
                     {v}★ & above
                   </button>
@@ -223,7 +222,7 @@ const Products = () => {
 
         {/* RIGHT — PRODUCT GRID */}
         <main className="flex-1 h-[calc(100vh-120px)] overflow-y-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pb-20">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 pb-20">
             {productWithAds.map((item) =>
               item.isAd ? (
                 <div

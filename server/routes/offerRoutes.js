@@ -7,6 +7,7 @@ import {
   pickLuckyDrawWinner,
   deleteOffer,
   get99StoreOffers,
+  getOffersByType,
 } from "../controllers/offerController.js";
 
 import { authenticateUser } from "../middlewares/authenticateMiddleware.js"; // if you have JWT auth
@@ -17,6 +18,9 @@ const router = express.Router();
 router.post("/", createOffer);
 
 router.get("/99_store", get99StoreOffers);
+
+router.get('/:type', getOffersByType);
+
 
 // GET ALL OFFERS
 router.get("/", getAllOffers);
