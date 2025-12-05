@@ -30,6 +30,36 @@
           "display": "Retina",
           "sim": "Dual Sim(Nano + eSIM)"
         }
+      },
+      {
+        "id": 1,
+        "name": "Samsung Galaxy S23 Ultra",
+        "brand": "Samsung",
+        "price": 999,
+        "image": "https://m.media-amazon.com/images/I/71goZuIha-L.jpg",
+        "rating": 4.7,
+        "reviews": 2873,
+        "specs": {
+          "ram": "12 GB",
+          "internal_storage": "256 GB",
+          "display": "Super AMOLED",
+          "sim": "Dual Sim"
+        }
+      },
+      {
+        "id": 2,
+        "name": "Apple iPhone 14 Pro Max",
+        "brand": "Apple",
+        "price": 1099,
+        "image": "https://easyphones.co.in/cdn/shop/files/Apple_iPhone_14_pro_Max_-_Refurbished_White.png?v=1755513244",
+        "rating": 4.6,
+        "reviews": 5421,
+        "specs": {
+          "ram": "6 GB",
+          "internal_storage": "256 GB",
+          "display": "Retina",
+          "sim": "Dual Sim(Nano + eSIM)"
+        }
       }
     ],
     "Laptops": [
