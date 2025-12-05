@@ -1,35 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import {
-  ArrowRight,
-  Clock,
-  Star,
-  Heart,
-  ShoppingCart,
-  ChevronRight,
-  Sparkles,
-  Zap,
-  TrendingUp,
-  ShieldCheck,
-  ChevronLeft,
-  Gift,
-  Ticket,
-} from "lucide-react";
 
-import productsData from "../data/products.json";
-
-// const extractAllProducts = (data) => {
-//   let result = [];
-
-  Object.values(data).forEach((category) => {
-    if (typeof category === "object" && !Array.isArray(category)) {
-      Object.values(category).forEach((sub) => {
-        if (Array.isArray(sub)) {
-          result.push(...sub);
-        }
-      });
-    }
-  });
 
 //   return result;
 // };
