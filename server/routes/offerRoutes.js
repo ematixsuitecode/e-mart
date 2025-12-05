@@ -25,10 +25,10 @@ router.get("/", getAllOffers);
 router.get("/product/:productId", getOffersByProduct);
 
 // JOIN LUCKY DRAW (USER AUTH REQUIRED)
-router.post("/lucky-draw/join/:offerId", authenticateUser, joinLuckyDraw);
+router.post("/lucky_draw/join/:offerId", authenticateUser, joinLuckyDraw);
 
 // PICK WINNER (Admin only)
-router.post("/lucky-draw/pick-winner/:offerId", pickLuckyDrawWinner);
+router.post("/lucky_draw/pick-winner/:offerId", pickLuckyDrawWinner);
 
 // DELETE OFFER
 router.delete("/:offerId", deleteOffer);

@@ -1,25 +1,35 @@
-// import React, { useState, useEffect } from 'react';
-// import { Link } from 'react-router-dom';
-// import { 
-//   ArrowRight, Clock, Star, Heart, 
-//   ShoppingCart, ChevronRight, Sparkles,
-//   Zap, TrendingUp, ShieldCheck, ChevronLeft, Gift, Ticket
-// } from 'lucide-react';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import {
+  ArrowRight,
+  Clock,
+  Star,
+  Heart,
+  ShoppingCart,
+  ChevronRight,
+  Sparkles,
+  Zap,
+  TrendingUp,
+  ShieldCheck,
+  ChevronLeft,
+  Gift,
+  Ticket,
+} from "lucide-react";
 
-// import productsData  from '../data/products.json';
+import productsData from "../data/products.json";
 
 // const extractAllProducts = (data) => {
 //   let result = [];
 
-//   Object.values(data).forEach(category => {
-//     if (typeof category === "object" && !Array.isArray(category)) {
-//       Object.values(category).forEach(sub => {
-//         if (Array.isArray(sub)) {
-//           result.push(...sub);
-//         }
-//       });
-//     }
-//   });
+  Object.values(data).forEach((category) => {
+    if (typeof category === "object" && !Array.isArray(category)) {
+      Object.values(category).forEach((sub) => {
+        if (Array.isArray(sub)) {
+          result.push(...sub);
+        }
+      });
+    }
+  });
 
 //   return result;
 // };
@@ -508,35 +518,35 @@ const QUICK_LINKS = [
     id: 2,
     name: "Mobiles",
     path: "/category/electronics",
-    img: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=300&q=80",
+    img: "https://images.unsplash.com/photo-1598327105666-5b89351aff70?auto=format&fit=crop&w=150&q=80",
     color: "bg-blue-50 border-blue-100",
   },
   {
     id: 3,
     name: "Fashion",
-    path: "/category/fashion",
+    path: "/category/fashion_beauty",
     img: "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=150&q=80",
     color: "bg-pink-50 border-pink-100",
   },
   {
     id: 4,
     name: "Beauty",
-    path: "/category/fashion",
+    path: "/category/fashion_beauty",
     img: "https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?auto=format&fit=crop&w=150&q=80",
     color: "bg-rose-50 border-rose-100",
   },
-  {
+  { 
     id: 5,
     name: "Home",
-    path: "/category/homes-furniture",
+    path: "/category/grocery",
     img: "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=150&q=80",
     color: "bg-orange-50 border-orange-100",
   },
   {
     id: 6,
     name: "Appliances",
-    path: "/category/appliances",
-    img: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=300&q=80",
+    path: "/category/tvs-appliances",
+    img: "https://images.unsplash.com/photo-1498049860654-af1a5c5668ba?auto=format&fit=crop&w=150&q=80",
     color: "bg-gray-50 border-gray-100",
   },
 ];
@@ -554,7 +564,7 @@ const SLIDES = [
     description:
       "Experience the finest collection of international brands. Free shipping on all orders above $99.",
     buttonText: "Explore Collection",
-    link: "/category/fashion",
+    link: "/fashion-trends",
   },
   {
     id: 2,
@@ -563,10 +573,11 @@ const SLIDES = [
       "https://images.unsplash.com/photo-1596462502278-27bfdd403cc2?auto=format&fit=crop&w=1200&q=80",
     subtitle: "The Beauty Sale",
     title: "GLOW UP KITS",
-    description: "Up to 50% off on skincare brands.",
+    description:
+      "Up to 50% off on top skincare brands. Presented by Maybelline & L'Oreal.",
     buttonText: "Shop Beauty",
     textColor: "text-gray-900",
-    link: "/category/fashion",
+    link: "/fashion-trends",
   },
   {
     id: 3,
@@ -575,27 +586,35 @@ const SLIDES = [
       "https://images.unsplash.com/photo-1550009158-9ebf69173e03?auto=format&fit=crop&w=1200&q=80",
     subtitle: "Tech Mania",
     title: "NEXT GEN GAMING",
-    description: "Pre-order the latest consoles and accessories.",
+    description:
+      "Pre-order the latest consoles and accessories. Exclusive deals for Prime members.",
     buttonText: "Browse Tech",
-    link: "/category/electronics",
+    link: "/electronics",
   },
 ];
 
+// --- SUB-COMPONENTS ---
+
 const EngagementBanner = () => {
-  
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="flex items-center justify-center gap-8 sm:gap-16 md:gap-24 overflow-x-auto hide-scrollbar py-2">
-        
         {/* 99 Store Bubble */}
-        <Link to="/99store" className="flex flex-col items-center gap-2 cursor-pointer group min-w-[80px]">
+        <Link
+          to="/99store"
+          className="flex flex-col items-center gap-2 cursor-pointer group min-w-[80px]"
+        >
           <div className="relative w-20 h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-b from-yellow-300 to-yellow-500 border-4 border-white shadow-lg flex items-center justify-center transform transition-transform duration-300 group-hover:-translate-y-2 group-hover:shadow-xl ring-2 ring-yellow-100">
-             <div className="absolute inset-1 rounded-full border border-yellow-200/50"></div>
-             <div className="text-center leading-none">
-                <span className="block text-xs font-bold text-yellow-800 uppercase tracking-tighter">Under</span>
-                <span className="block text-3xl md:text-4xl font-black text-red-600 drop-shadow-sm">99</span>
-             </div>
-             <div className="absolute top-2 right-4 w-3 h-3 bg-white/40 rounded-full blur-[1px]"></div>
+            <div className="absolute inset-1 rounded-full border border-yellow-200/50"></div>
+            <div className="text-center leading-none">
+              <span className="block text-xs font-bold text-yellow-800 uppercase tracking-tighter">
+                Under
+              </span>
+              <span className="block text-3xl md:text-4xl font-black text-red-600 drop-shadow-sm">
+                99
+              </span>
+            </div>
+            <div className="absolute top-2 right-4 w-3 h-3 bg-white/40 rounded-full blur-[1px]"></div>
           </div>
           <span className="text-sm font-bold text-gray-800 bg-white border border-gray-100 px-3 py-1 rounded-full shadow-sm group-hover:text-yellow-600 transition-colors">
             99 Store
@@ -603,20 +622,22 @@ const EngagementBanner = () => {
         </Link>
 
         {/* Spinning Luck Draw Bubble */}
-        <Link to="/todays-special" className="flex flex-col items-center gap-2 cursor-pointer group min-w-[80px]">
+        <Link
+          to="/todays-special"
+          className="flex flex-col items-center gap-2 cursor-pointer group min-w-[80px]"
+        >
           <div className="relative w-20 h-20 md:w-24 md:h-24 rounded-full border-4 border-white shadow-lg flex items-center justify-center overflow-hidden transform transition-transform duration-300 group-hover:-translate-y-2 group-hover:shadow-xl ring-2 ring-purple-100">
-             
-             {/* Spinning Background */}
-             <div className="absolute inset-0 w-full h-full bg-[conic-gradient(at_center,_var(--tw-gradient-stops))] from-red-500 via-yellow-500 via-green-500 via-blue-500 to-red-500 animate-[spin_4s_linear_infinite]"></div>
-             
-             {/* Center Static Content */}
-             <div className="absolute inset-1 bg-white/10 rounded-full"></div>
-             <div className="relative z-10 w-14 h-14 bg-white rounded-full flex items-center justify-center shadow-inner">
-                <Gift className="w-7 h-7 text-purple-600 animate-pulse" />
-             </div>
-             
-             {/* Ticker Marker */}
-             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[10px] border-t-gray-800 z-20"></div>
+            {/* Spinning Background */}
+            <div className="absolute inset-0 w-full h-full bg-[conic-gradient(at_center,_var(--tw-gradient-stops))] from-red-500 via-yellow-500 via-green-500 via-blue-500 to-red-500 animate-[spin_4s_linear_infinite]"></div>
+
+            {/* Center Static Content */}
+            <div className="absolute inset-1 bg-white/10 rounded-full"></div>
+            <div className="relative z-10 w-14 h-14 bg-white rounded-full flex items-center justify-center shadow-inner">
+              <Gift className="w-7 h-7 text-purple-600 animate-pulse" />
+            </div>
+
+            {/* Ticker Marker */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[10px] border-t-gray-800 z-20"></div>
           </div>
           <span className="text-sm font-bold text-gray-800 bg-white border border-gray-100 px-3 py-1 rounded-full shadow-sm group-hover:text-purple-600 transition-colors">
             Luck Draw
@@ -624,15 +645,17 @@ const EngagementBanner = () => {
         </Link>
 
         {/* Flash Coupons */}
-        <Link to="/todays-special" className="flex flex-col items-center gap-2 cursor-pointer group min-w-[80px]">
+        <Link
+          to="/todays-special"
+          className="flex flex-col items-center gap-2 cursor-pointer group min-w-[80px]"
+        >
           <div className="relative w-20 h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-tr from-blue-400 to-indigo-600 border-4 border-white shadow-lg flex items-center justify-center transform transition-transform duration-300 group-hover:-translate-y-2 group-hover:shadow-xl ring-2 ring-blue-100">
-             <Ticket className="w-10 h-10 text-white rotate-12 group-hover:rotate-0 transition-transform" />
+            <Ticket className="w-10 h-10 text-white rotate-12 group-hover:rotate-0 transition-transform" />
           </div>
           <span className="text-sm font-bold text-gray-800 bg-white border border-gray-100 px-3 py-1 rounded-full shadow-sm group-hover:text-blue-600 transition-colors">
             Coupons
           </span>
         </Link>
-
       </div>
     </div>
   );
@@ -655,7 +678,7 @@ const QuickLinkRail = () => (
               <img
                 src={item.img}
                 alt={item.name}
-                className="w-full h-full object-cover rounded-full group-hover:scale-110 transition duration-500"
+                className="w-full h-full object-cover rounded-full transform group-hover:scale-110 transition duration-500"
               />
             </div>
             <span className="text-[11px] font-semibold text-gray-700 group-hover:text-indigo-600">
@@ -688,7 +711,7 @@ const HeroSlider = () => {
         {SLIDES.map((slide, index) => (
           <div
             key={slide.id}
-            className={`absolute inset-0 transition-opacity duration-700 ${
+            className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
               index === current ? "opacity-100 z-10" : "opacity-0 z-0"
             } ${slide.bg}`}
           >
@@ -696,27 +719,45 @@ const HeroSlider = () => {
               <img
                 src={slide.image}
                 alt={slide.title}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover mask-image-linear-fade"
+                style={{
+                  maskImage:
+                    "linear-gradient(to left, black 70%, transparent 100%)",
+                  WebkitMaskImage:
+                    "linear-gradient(to left, black 70%, transparent 100%)",
+                }}
+              />
+            </div>
+            <div className="absolute inset-0 md:hidden">
+              <img
+                src={slide.image}
+                alt={slide.title}
+                className="w-full h-full object-cover opacity-30"
               />
             </div>
 
-            <div className="container mx-auto px-6 h-full flex flex-col justify-center">
-              <div className={slide.textColor || "text-white"}>
-                <span className="inline-block font-bold px-3 py-1 text-xs uppercase mb-4 bg-white/20">
+            <div className="container mx-auto px-6 h-full flex flex-col justify-center relative z-20">
+              <div
+                className={`max-w-xl ${
+                  slide.textColor || "text-white"
+                } animate-fade-in-up`}
+              >
+                <span
+                  className={`inline-block font-bold px-3 py-1 text-xs uppercase tracking-wider rounded-sm mb-4 bg-white/20 backdrop-blur-md`}
+                >
                   {slide.subtitle}
                 </span>
-
-                <h2 className="text-4xl md:text-6xl font-black mb-4">
+                <h2 className="text-4xl md:text-6xl font-black mb-4 leading-tight drop-shadow-lg">
                   {slide.title}
                 </h2>
-                <p className="text-lg md:text-xl mb-6 max-w-md">
+                <p
+                  className={`text-lg md:text-xl font-medium mb-8 opacity-90 max-w-md`}
+                >
                   {slide.description}
                 </p>
-
                 <Link to={slide.link}>
-                  <button className="bg-white text-gray-900 px-8 py-3 rounded-full font-bold">
-                    {slide.buttonText}{" "}
-                    <ArrowRight className="inline w-5 h-5 ml-2" />
+                  <button className="bg-white text-gray-900 px-8 py-3 rounded-full font-bold hover:bg-gray-100 transition shadow-lg active:scale-95 flex items-center gap-2">
+                    {slide.buttonText} <ArrowRight className="w-5 h-5" />
                   </button>
                 </Link>
               </div>
@@ -727,16 +768,30 @@ const HeroSlider = () => {
 
       <button
         onClick={prevSlide}
-        className="absolute left-4 top-1/2 bg-white/30 p-2 rounded-full"
+        className="absolute left-4 top-1/2 -translate-y-1/2 z-30 bg-white/30 hover:bg-white text-white hover:text-gray-900 p-2 rounded-full backdrop-blur-sm transition-all shadow-lg border border-white/20"
       >
         <ChevronLeft className="w-6 h-6" />
       </button>
       <button
         onClick={nextSlide}
-        className="absolute right-4 top-1/2 bg-white/30 p-2 rounded-full"
+        className="absolute right-4 top-1/2 -translate-y-1/2 z-30 bg-white/30 hover:bg-white text-white hover:text-gray-900 p-2 rounded-full backdrop-blur-sm transition-all shadow-lg border border-white/20"
       >
         <ChevronRight className="w-6 h-6" />
       </button>
+
+      <div className="absolute bottom-6 left-0 right-0 flex justify-center gap-2 z-30">
+        {SLIDES.map((_, idx) => (
+          <button
+            key={idx}
+            onClick={() => setCurrent(idx)}
+            className={`h-1.5 rounded-full transition-all duration-300 ${
+              idx === current
+                ? "w-8 bg-white"
+                : "w-2 bg-white/40 hover:bg-white/60"
+            }`}
+          />
+        ))}
+      </div>
     </section>
   );
 };
@@ -744,11 +799,9 @@ const HeroSlider = () => {
 /* ------------------------------- DEAL ZONE -------------------------------- */
 
 const DealZone = () => {
-  const allProductList = Object.keys(allProducts)
-    .filter((key) => key !== "filters")
-    .flatMap((key) => allProducts[key]);
-
-  const dealProducts = allProductList.filter((p) => p.price < 150).slice(0, 5);
+  const dealProducts = (allProducts || [])
+    .filter((p) => p.price < 150)
+    .slice(0, 5);
 
   return (
     <section className="relative z-20 mt-8 mb-12">
@@ -764,7 +817,6 @@ const DealZone = () => {
             <p className="text-gray-500 text-sm mb-4 font-medium">
               Offer ends in:
             </p>
-
             <div className="flex gap-3">
               {["04", "32", "15"].map((time, i) => (
                 <div key={i} className="flex flex-col items-center">
@@ -841,6 +893,7 @@ const BentoGrid = () => (
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 h-auto md:h-[600px]">
+        {/* Navigation Cards - Linking to Subpages */}
         <Link
           to="/fashion-trends"
           className="md:col-span-1 md:row-span-2 relative rounded-2xl overflow-hidden group cursor-pointer shadow-md hover:shadow-xl transition-all duration-500"
@@ -1024,9 +1077,10 @@ const TrendingProducts = () => {
 /* ------------------------------- RECOMMENDED PRODUCTS -------------------------------- */
 
 const RecommendedProducts = () => {
-  const recommended = ALL.filter(
-    (p) => p.tag === "Best Seller" || p.tag === "Trending"
-  ).slice(0, 8);
+  // Use products from JSON that are tagged as "Best Seller" or "Trending"
+  const recommended = (allProducts || [])
+    .filter((p) => p.tag === "Best Seller" || p.tag === "Trending")
+    .slice(0, 8);
 
   return (
     <section className="bg-gray-50 py-16 border-t border-gray-200">
@@ -1168,6 +1222,7 @@ const Home = () => {
     <div className="font-sans bg-white min-h-screen text-gray-800 pb-8">
       <QuickLinkRail />
       <HeroSlider />
+      {/* Added the new gamified section here */}
       <EngagementBanner />
       <DealZone />
       <BentoGrid />

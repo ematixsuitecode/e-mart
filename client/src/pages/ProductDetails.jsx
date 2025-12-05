@@ -1,4 +1,3 @@
-// src/pages/ProductDetails.jsx
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import allProducts from "../data/products.json";
@@ -6,42 +5,33 @@ import { Star, Truck, ShieldCheck, Heart, ShoppingCart } from "lucide-react";
 
 const ProductDetails = () => {
   const { id } = useParams();
-
-  console.log(id, 'id value');
-
   const [product, setProduct] = useState(null);
   const [mainImage, setMainImage] = useState("");
 
-  // Flatten all products
-  const allItems = Object.keys(allProducts)
-    .filter((c) => c !== "filters")
-    .flatMap((c) => allProducts[c]);
+  // 🔹 Flatten all nested categories
+  const flattenProducts = () => {
+    const list = [];
 
-    console.log(allItems, 'item details');
+    Object.keys(allProducts).forEach((cat) => {
+      if (cat === "filters") return;
 
-    const getAllProducts = () => {
-  const products = [];
+      const subcats = allProducts[cat];
 
-  allItems.forEach(group => {
-    Object.values(group).forEach(categoryArray => {
-      categoryArray.forEach(product => {
-        products.push(product);
+      Object.values(subcats).forEach((arr) => {
+        arr.forEach((item) => list.push(item));
       });
     });
-  });
 
-  return products;
-};
+    return list;
+  };
 
   useEffect(() => {
-  const products = getAllProducts();
-  const found = products.find((p) => String(p.id) === String(id));
+    const items = flattenProducts();
+    const found = items.find((p) => String(p.id) === String(id));
 
-  setProduct(found);
-  console.log(found ? found : "Details not found");
-
-  if (found) setMainImage(found.image);
-}, [id]);
+    setProduct(found || null);
+    if (found) setMainImage(found.image);
+  }, [id]);
 
   if (!product)
     return (
@@ -52,114 +42,121 @@ const ProductDetails = () => {
 
   return (
     <div className="bg-gray-50 min-h-screen py-6">
-      <div className="max-w-6xl mx-auto bg-white rounded-lg shadow p-6">
+      <div className="max-w-6xl mx-auto bg-white rounded-2xl shadow p-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-          {/* LEFT — IMAGE SECTION */}
+          {/* --------------------------------------------------------------------
+              LEFT SIDE — PRODUCT IMAGES
+          -------------------------------------------------------------------- */}
           <div>
-            <div className="border rounded-lg p-4 bg-gray-100">
+            <div className="relative border rounded-2xl p-4 bg-gray-100 shadow-sm">
               <img
                 src={mainImage}
                 alt={product.name}
                 className="w-full h-96 object-contain"
               />
+
+              {/* Discount Badge */}
+              <div className="absolute top-4 left-4 bg-red-500 text-white px-4 py-1 rounded-full text-sm font-semibold">
+                20% OFF
+              </div>
             </div>
 
             {/* Thumbnail Row */}
             <div className="flex gap-3 mt-4 overflow-x-auto">
-              {[product.image, ...(product.gallery || [])].map((img, idx) => (
+              {[product.image, ...(product.gallery || [])].map((img, index) => (
                 <img
-                  key={idx}
+                  key={index}
                   src={img}
-                  className={`w-20 h-20 border rounded-lg object-contain cursor-pointer 
-                    ${
-                      mainImage === img ? "border-blue-600" : "border-gray-300"
-                    }`}
                   onClick={() => setMainImage(img)}
-                  alt=""
+                  className={`w-20 h-20 rounded-lg border cursor-pointer object-cover ${
+                    mainImage === img
+                      ? "border-blue-600 shadow-lg"
+                      : "border-gray-300"
+                  }`}
                 />
               ))}
             </div>
 
-            {/* Add to Cart Buttons */}
+            {/* Buttons */}
             <div className="flex gap-4 mt-6">
               <button className="flex-1 bg-yellow-400 text-black font-bold py-3 rounded-lg hover:bg-yellow-500">
-                <ShoppingCart className="inline mr-2" /> ADD TO CART
+                <ShoppingCart className="inline mr-2" /> Add to Cart
               </button>
-              <button className="flex-1 bg-orange-500 text-white font-bold py-3 rounded-lg hover:bg-orange-600">
-                BUY NOW
+
+              <button className="flex-1 bg-purple-600 text-white font-bold py-3 rounded-lg hover:bg-purple-700">
+                Buy Now
               </button>
             </div>
           </div>
 
-          {/* RIGHT — PRODUCT INFO */}
+          {/* --------------------------------------------------------------------
+              RIGHT SIDE — PRODUCT DETAILS
+          -------------------------------------------------------------------- */}
           <div>
-            <h1 className="text-2xl font-bold text-gray-800">{product.name}</h1>
+            <h1 className="text-3xl font-bold text-gray-900">{product.name}</h1>
 
             {/* Rating */}
             <div className="flex items-center gap-2 mt-2">
-              <span className="bg-green-600 text-white px-2 py-1 text-xs rounded flex items-center gap-1">
+              <span className="bg-green-600 text-white px-2 py-1 rounded text-xs flex items-center gap-1">
                 {product.rating} <Star className="w-3 h-3" />
               </span>
               <span className="text-gray-500 text-sm">
-                {product.reviews} Reviews
+                {product.reviews} reviews
               </span>
             </div>
 
-            {/* Price */}
+            {/* Price Section */}
             <div className="mt-4">
               <span className="text-3xl font-bold text-gray-900">
-                ₹{product.price * 84}
+                ₹{Math.round(product.price * 84)}
               </span>
-              <span className="text-gray-500 line-through ml-3">
+              <span className="line-through text-gray-500 ml-3">
                 ₹{Math.round(product.price * 84 * 1.2)}
               </span>
-              <span className="text-green-600 font-bold ml-3">20% off</span>
+              <span className="text-green-600 font-semibold ml-3">20% off</span>
             </div>
 
-            {/* Available Offers */}
-            <div className="mt-6">
-              <h2 className="text-lg font-semibold mb-2">Available Offers</h2>
-              <ul className="text-sm text-gray-700 space-y-2">
-                <li>• 10% Instant Discount on HDFC Bank Cards</li>
-                <li>• ₹50 off on UPI transactions</li>
-                <li>• No Cost EMI Available</li>
-              </ul>
+            {/* Delivery Info */}
+            <div className="mt-6 grid grid-cols-2 gap-4">
+              <div className="border p-4 rounded-xl shadow-sm bg-blue-50 flex items-center gap-3">
+                <Truck className="text-blue-700 w-6 h-6" />
+                <div>
+                  <p className="font-semibold">Free Delivery</p>
+                  <p className="text-sm text-gray-600">Tomorrow by 9 PM</p>
+                </div>
+              </div>
+
+              <div className="border p-4 rounded-xl shadow-sm bg-green-50 flex items-center gap-3">
+                <ShieldCheck className="text-green-700 w-6 h-6" />
+                <div>
+                  <p className="font-semibold">1 Year Warranty</p>
+                  <p className="text-sm text-gray-600">
+                    Official warranty included
+                  </p>
+                </div>
+              </div>
             </div>
 
-            {/* Highlights */}
+            {/* Specifications */}
             {product.specs && (
-              <div className="mt-6">
-                <h2 className="text-lg font-semibold mb-2">Highlights</h2>
-                <ul className="text-sm text-gray-700 space-y-1">
+              <div className="mt-8">
+                <h2 className="text-xl font-semibold mb-3">Specifications</h2>
+
+                <div className="grid grid-cols-2 gap-y-3 text-gray-800">
                   {Object.entries(product.specs).map(([key, value]) => (
-                    <li key={key}>
-                      • <b>{key.toUpperCase()}:</b> {value}
-                    </li>
+                    <div
+                      key={key}
+                      className="flex justify-between border-b pb-2"
+                    >
+                      <span className="font-medium capitalize">
+                        {key.replace("_", " ")}
+                      </span>
+                      <span>{value}</span>
+                    </div>
                   ))}
-                </ul>
+                </div>
               </div>
             )}
-
-            {/* Delivery */}
-            <div className="mt-6 border p-4 rounded-lg">
-              <h3 className="font-semibold mb-2">Delivery</h3>
-              <div className="flex items-center gap-3 text-sm text-gray-700">
-                <Truck className="w-5 h-5 text-blue-600" />
-                Delivery by <b>Tomorrow</b> — Free Delivery
-              </div>
-            </div>
-
-            {/* Seller */}
-            <div className="mt-6 border p-4 rounded-lg">
-              <h3 className="font-semibold mb-2">Seller</h3>
-              <div className="flex items-center justify-between">
-                <span className="font-bold text-gray-800">Ematix Retail</span>
-                <ShieldCheck className="text-green-600 w-5 h-5" />
-              </div>
-              <p className="text-sm text-gray-600 mt-1">
-                100% Original Products
-              </p>
-            </div>
 
             {/* Wishlist */}
             <button className="mt-6 flex items-center gap-2 text-gray-600 font-semibold hover:text-rose-500">
@@ -171,7 +168,7 @@ const ProductDetails = () => {
         {/* Description */}
         {product.description && (
           <div className="mt-10 border-t pt-6">
-            <h2 className="text-lg font-bold mb-3">Product Description</h2>
+            <h2 className="text-xl font-bold mb-3">Product Description</h2>
             <p className="text-gray-700 leading-relaxed">
               {product.description}
             </p>

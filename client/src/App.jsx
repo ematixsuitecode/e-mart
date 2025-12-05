@@ -16,11 +16,11 @@ import Productpage from "./subpages/categories/electronics";
 import TodaysSpecial from "./subpages/TodaysSpecial";
 
 // Admin Pages
-import AdminDashboard from './pages/admin/AdminDashboard.jsx'
-import AdminProductPage from './pages/admin/ProductPage.jsx'
-import AdminSettingPAge from './pages/admin/SettingsPage.jsx'
-import AdminCustomerPage from './pages/admin/CustomersPage.jsx'
-import AdminOrderPage from './pages/admin/OrderPage.jsx'
+import AdminDashboard from "./pages/admin/AdminDashboard.jsx";
+import AdminProductPage from "./pages/admin/ProductPage.jsx";
+import AdminSettingPAge from "./pages/admin/SettingsPage.jsx";
+import AdminCustomerPage from "./pages/admin/CustomersPage.jsx";
+import AdminOrderPage from "./pages/admin/OrderPage.jsx";
 
 import HomeOutlet from "./pages/HomeOutlet.jsx";
 import AdminOutlet from "./pages/AdminOutlet.jsx";
@@ -40,7 +40,6 @@ export default function App() {
       <ScrollToTop />
 
       <Routes>
-
         {/* USER ROUTES */}
         <Route path="/" element={<HomeOutlet />}>
           <Route index element={<Home />} />
