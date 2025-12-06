@@ -15,6 +15,9 @@ import {
   Gift,
   Ticket,
 } from "lucide-react";
+import appliancesPoster from "../assets/appliances.png";
+import fashionPoster from "../assets/fashion.png";
+
 import allProducts from "../data/products.json";
 
 /* -------------------------------
@@ -85,7 +88,7 @@ const SLIDES = [
     id: 2,
     bg: "bg-gradient-to-r from-rose-100 to-rose-200",
     image:
-      "https://images.unsplash.com/photo-1596462502278-27bfdd403cc2?auto=format&fit=crop&w=1200&q=80",
+      "https://gushbeauty.com/cdn/shop/collections/Desktop_Banner.jpg?v=1703670457&width=2048",
     subtitle: "The Beauty Sale",
     title: "GLOW UP KITS",
     description:
@@ -629,14 +632,34 @@ const ProductStrip = ({ title, products }) => (
 
 /* ------------------------------- PRODUCT GROUPS -------------------------------- */
 
-const flattenProducts = () =>
-  Object.keys(allProducts)
-    .filter((key) => key !== "filters")
-    .flatMap((key) =>
-      Array.isArray(allProducts[key])
-        ? allProducts[key]
-        : Object.values(allProducts[key]).flat()
-    );
+// const flattenProducts = () =>
+//   Object.keys(allProducts)
+//     .filter((key) => key !== "filters")
+//     .flatMap((key) =>
+//       Array.isArray(allProducts[key])
+//         ? allProducts[key]
+//         : Object.values(allProducts[key]).flat()
+//     );
+
+const flattenProducts = () => {
+  const products = [];
+
+  Object.keys(allProducts).forEach((categoryKey) => {
+    if (categoryKey === "filters") return;
+
+    const category = allProducts[categoryKey];
+
+    Object.keys(category).forEach((subKey) => {
+      const subCategory = category[subKey];
+
+      if (Array.isArray(subCategory)) {
+        products.push(...subCategory);
+      }
+    });
+  });
+
+  return products;
+};
 
 const ALL = flattenProducts();
 
@@ -645,9 +668,92 @@ const TopProducts = () => {
   return <ProductStrip title="Top Products" products={top} />;
 };
 
+// const BestSellers = () => {
+//   const best = ALL.filter((x) => x.tag === "Best Seller");
+//   return <ProductStrip title="Best Sellers" products={best} />;
+// };
+
 const BestSellers = () => {
-  const best = ALL.filter((x) => x.tag === "Best Seller");
-  return <ProductStrip title="Best Sellers" products={best} />;
+  const best = ALL.filter(
+    (x) =>
+      x.tag === "Best Offer" &&
+      x.brand &&
+      ["Samsung", "Apple", "Dell"].includes(x.brand)
+  ).slice(0, 2);
+
+  return (
+    <div className="w-full">
+      <div className="w-full flex gap-6">
+        {/* Left side - Product Cards */}
+        <div className="w-[45%] h-[60vh] flex flex-col justify-center">
+          <section className="py-6 bg-white">
+            <div className="px-4">
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-xl font-bold text-gray-900">Best Offers</h2>
+                <Link
+                  to="/products"
+                  className="text-indigo-600 font-semibold text-sm flex items-center gap-1"
+                >
+                  View All <ChevronRight className="w-4 h-4" />
+                </Link>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                {best.map((p) => (
+                  <Link
+                    key={p.id}
+                    to={`/products/${p.id}`}
+                    className="bg-white border border-gray-300 p-3 hover:shadow-lg transition-all rounded"
+                  >
+                    <div className="aspect-square rounded-md bg-gray-100 overflow-hidden mb-2">
+                      <img
+                        src={p.image}
+                        alt={p.name}
+                        className="w-full h-full object-contain"
+                      />
+                    </div>
+
+                    <h3 className="text-sm font-semibold mb-1">{p.name}</h3>
+
+                    {/* Rating UI */}
+                    <div className="flex items-center text-yellow-400 mb-1">
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className={`w-3 h-3 ${
+                            i < Math.floor(p.rating)
+                              ? "fill-current"
+                              : "text-gray-300"
+                          }`}
+                        />
+                      ))}
+
+                      <span className="text-xs text-gray-500 ml-2">
+                        ({p.reviews})
+                      </span>
+                    </div>
+
+                    <span className="text-gray-900 font-bold text-sm">
+                      ${p.price}
+                    </span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </section>
+        </div>
+
+        {/* Right side - Poster */}
+        <div className="w-[55%] h-[60vh] bg-slate-100 rounded-2xl overflow-hidden">
+          <img
+            src={appliancesPoster}
+            alt="poster"
+            className="w-full h-full object-cover"
+          />
+        </div>
+      </div>
+    </div>
+  );
 };
 
 const NewArrivals = () => {
@@ -656,8 +762,19 @@ const NewArrivals = () => {
 };
 
 const TrendingProducts = () => {
-  const trending = ALL.filter((x) => x.tag === "Trending");
-  return <ProductStrip title="Trending Now" products={trending} />;
+  return (
+    <section className="w-full py-10">
+      <div className="container mx-auto px-4">
+        <div className="w-full h-[60vh] rounded-2xl overflow-hidden shadow-md">
+          <img
+            src={fashionPoster}
+            alt="Trending Fashion"
+            className="w-full h-full object-cover"
+          />
+        </div>
+      </div>
+    </section>
+  );
 };
 
 /* ------------------------------- RECOMMENDED PRODUCTS -------------------------------- */

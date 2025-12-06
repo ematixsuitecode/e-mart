@@ -124,12 +124,25 @@ const Navbar = () => {
         {/* =================== ICONS & LOGIN BUTTON =================== */}
         <div className="flex items-center gap-3 md:gap-6 text-gray-600 ml-auto md:ml-0">
           {/* ⭐ Flipkart-style Login Button */}
-          <Link
+          {/* <Link
             to="/login"
             className="hidden md:block px-6 py-2 font-bold rounded-lg 
                        bg-white border border-indigo-600 text-indigo-600 
                        hover:bg-indigo-600 hover:text-white 
                        transition-all shadow-sm"
+          >
+            Login
+          </Link> */}
+
+          <Link
+            to="/login"
+            className="
+    hidden md:block px-7 py-2 font-semibold rounded-lg
+    bg-indigo-600 text-white
+    shadow-md hover:shadow-xl
+    hover:-translate-y-0.5
+    transition-all duration-300
+  "
           >
             Login
           </Link>
@@ -149,7 +162,7 @@ const Navbar = () => {
             className="hidden md:flex flex-col items-center p-2 hover:bg-rose-50 relative"
           >
             <Heart className="w-6 h-6" />
-            <span className="text-[10px] font-bold">Saved</span>
+            <span className="text-[10px] font-bold">Wishlist</span>
             <span className="absolute top-2 right-2 w-2 h-2 bg-rose-500 rounded-full border-2 border-white"></span>
           </Link>
 

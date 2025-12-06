@@ -102,31 +102,43 @@ const Productpage = () => {
     <div className="bg-white min-h-screen font-sans">
       {/* Category Banner */}
       <BannerSlider category={category} banners={[categoryBanner]} />
-
       {/* Subcategories */}
+      <div style={{ marginLeft: "60px", fontWeight: "bold" }}>
+        {" "}
+        Sub category
+      </div>
       {subcategories.length > 0 && (
         <div className="container mx-auto px-4 md:px-8 py-4 flex gap-4 overflow-x-auto">
           {subcategories.map((sub) => (
             <div
               key={sub}
-              className="flex-shrink-0 w-16 h-16 rounded-full overflow-hidden shadow-md border border-gray-100"
+              className="flex-shrink-0 w-20 h-auto flex flex-col items-center"
             >
-              <img
-                src={
-                  productsMaster.filters?.subcategoryImages?.[0]?.[sub] ||
-                  "https://via.placeholder.com/150"
-                }
-                alt={sub}
-                className="w-full h-full object-cover"
-              />
-              <div className="text-center mt-2 text-sm font-semibold">
+              {/* Circle Image */}
+              <div className="w-16 h-16 rounded-full overflow-hidden shadow-md border border-gray-100">
+                <img
+                  src={
+                    productsMaster.filters?.subcategoryImages?.[0]?.[sub] ||
+                    "https://via.placeholder.com/150"
+                  }
+                  alt={sub}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+
+              {/* Subcategory Name */}
+              <div className="text-center mt-1 text-sm font-semibold">
                 {sub}
+              </div>
+
+              {/* Category Name */}
+              <div className="text-center text-[11px] text-gray-500 -mt-1 capitalize">
+                {category}
               </div>
             </div>
           ))}
         </div>
       )}
-
       {/* Main Content */}
       <div className="container mx-auto px-4 pb-12 flex gap-6 relative">
         {/* Sidebar Filters */}

@@ -9,6 +9,7 @@
         "image": "https://m.media-amazon.com/images/I/71goZuIha-L.jpg",
         "rating": 4.7,
         "reviews": 2873,
+        "tag": "Best Offer",
         "specs": {
           "ram": "12 GB",
           "internal_storage": "256 GB",
@@ -24,6 +25,7 @@
         "image": "https://easyphones.co.in/cdn/shop/files/Apple_iPhone_14_pro_Max_-_Refurbished_White.png?v=1755513244",
         "rating": 4.6,
         "reviews": 5421,
+        "tag": "Best Offer",
         "specs": {
           "ram": "6 GB",
           "internal_storage": "256 GB",
@@ -239,6 +241,30 @@
       }
     ]
   },
+  "best_offer": {
+  "Exclusive Electronic Deals": [
+    {
+      "id": 601,
+      "name": "Apple iPad 10th Gen",
+      "brand": "Apple",
+      "price": 399,
+      "image": "https://hd.wallpaperswide.com/thumbs/ipad_pro_apple-t2.jpg",
+      "rating": 4.7,
+      "reviews": 2100,
+      "tag": "Best Offer"
+    },
+    {
+      "id": 602,
+      "name": "Lenovo 14-inch Laptop",
+      "brand": "Lenovo",
+      "price": 499,
+      "image": "https://source.unsplash.com/featured/?laptop",
+      "rating": 4.4,
+      "reviews": 1500,
+      "tag": "Best Offer"
+    }
+  ]
+},
   "appliances": {
     "Washing Machines": [
       {
@@ -634,3 +660,4 @@
     ]
   }
 }
+
