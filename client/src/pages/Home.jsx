@@ -405,7 +405,7 @@ const DealZone = () => {
             ---------------------------------------------------------------- */}
             <div className="lg:col-span-3 relative overflow-hidden py-3">
               {/* Left fade mask */}
-              <div className="pointer-events-none absolute left-0 top-0 h-full w-16 bg-gradient-to-r from-white to-transparent z-20"></div>
+              <div className="pointer-events-none absolute left-0 top-0 h-full w-20 bg-gradient-to-r from-white to-transparent z-20"></div>
 
               {/* Right fade mask */}
               <div className="pointer-events-none absolute right-0 top-0 h-full w-16 bg-gradient-to-l from-white to-transparent z-20"></div>
@@ -429,7 +429,10 @@ const DealZone = () => {
                         HOT DEAL
                       </span>
 
-                      <h4 className="font-bold text-gray-900 text-sm leading-tight line-clamp-1 overflow-hidden">
+                      <h4
+                        className="font-bold text-gray-900 text-sm leading-tight 
+             max-w-[140px] overflow-hidden text-ellipsis whitespace-nowrap"
+                      >
                         {product.name}
                       </h4>
 
@@ -570,7 +573,7 @@ const BentoGrid = () => (
 /* ------------------------------- PRODUCT STRIP (SHARED) -------------------------------- */
 
 const ProductStrip = ({ title, products }) => (
-  <section className="py-12 bg-white border-t border-gray-400">
+  <section className="py-12 bg-white border-t border-gray-100">
     <div className="container mx-auto px-4">
       <div className="flex items-center justify-between mb-8">
         <h2 className="text-2xl font-bold text-gray-900">{title}</h2>
@@ -587,7 +590,7 @@ const ProductStrip = ({ title, products }) => (
           <Link
             key={product.id}
             to={`/products/${product.id}`}
-            className="bg-white  border border-gray-400 p-4 hover:shadow-lg transition-all"
+            className="bg-white  border border-gray-200 p-4 hover:shadow-lg transition-all"
           >
             <div className="aspect-square rounded-md bg-gray-100 overflow-hidden mb-3">
               <img
