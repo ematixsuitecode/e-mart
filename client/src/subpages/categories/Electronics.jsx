@@ -167,7 +167,7 @@ const Productpage = () => {
         />
 
         {/* Product Grid */}
-        <main className="flex-1">
+        <main className="flex-1 h-[80vh] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-gray-300">
           <ProductGrid
             products={filteredProducts}
             loading={isLoading}
